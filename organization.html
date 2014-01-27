@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>단체 등록</title>
+<script>
+$(document).ready(function(){
+	$('#submit').click(function(){
+		if($('#writer').val()==""){
+			alert("작성자를 입력해 주세요.");
+			$('#writer').focus();
+			return false;
+		}
+		if($('#association').val()==""){
+			alert("단체명을 입력해 주세요.");
+			$('#association').focus();
+			return false;
+		}
+		if($('#field').val()==""){
+			alert("분야를 선택해 주세요.");
+			$('#field').focus();
+			return false;
+		}
+		$('#form').submit();
+	});
+	
+	
+})
+
+
+
+
+</script>
+</head>
+<body leftmargin="0" topmargain="0" marginheight="0">
+<br><br>
+<table width="500" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#EBDBF2" style="border:0px #3333333 solid;border-top-width:3px;">
+  <tr>
+   <td align="center"><b>단체 등록<b></td>
+  </tr>
+ </table>
+
+  <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+   <tr>
+    <td bgcolor="#E8E8E8" align="center">자세히 입력해 주세요.</td>
+   </tr>
+  </table>
+  
+  <table width="500" border="0" align="center" cellpadding="5" cellspacing="1">
+
+
+   <tr>
+    <td bgcolor="#EFD8F1" align="center"><font color="#FF0000"></font>작성자</td>
+    <td bgcolor="#E8E8E8">
+     <input type="text" name="writer" id="writer" size="20" tabindex="4">
+    </td>
+   </tr>
+
+   <tr>
+    <td bgcolor="#EFD8F1" align="center"><font color="#FF0000"></font></td>
+    <td bgcolor="#E8E8E8">
+     <input type="text" name="association" id="association" size="20" tabindex="5">
+    </td>
+   </tr>
+
+   <tr>
+    <td bgcolor="#EFD8F1" align="center"><font color="#FF0000"></font>분야</td>
+    <td bgcolor="#E8E8E8">
+    <select name="field" class="field">
+    <option value="">선택</option>
+    <option value="동아리 행사">동아리 행사</option>
+    <option value="외부 행사">외부 행사</option>
+    <option value="내부 행사">내부 행사(특강, 축제 등)</option>
+    </td>
+   </tr>
+  </table>
+
+  <table width="500" height="40" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#EBDBF2" style=border:0px #333333 solid; border-bottom-width:3px;''>
+   <tr>
+    <td align="center">
+    <input type="submit" name="submit" value="등록">
+    <input type="reset" name="reset" value="취소">
+    </td>
+   </tr>
+  </table>
+ </form>
+</body>
+</html>
