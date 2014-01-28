@@ -4,6 +4,7 @@
     <column name="eventname" type="varchar" size="30" notnull="notnull"/>
 	<column name="place" type="varchar" size="20" notnull="notnull"/>
     <column name="id" type="varchar" size="40" notnull="notnull"/>
+	<column name="phone" type="number" size="11" />
 	<column name="fare" type="number" size="7"/>
 	<column name="contents" type="varchar" size="500" notnull="notnull"/>
 	<column name="startdate" type="varchar" size="10" notnull="notnull" />
