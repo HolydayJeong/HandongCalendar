@@ -38,6 +38,7 @@ class hgucalendarView extends hgucalendar {
 	}
 
 	function dispHgucalendarShow() {
+		debugPrint('calendar');
 		$this->setTemplateFile('calendar');
 		
 	}
@@ -52,7 +53,7 @@ class hgucalendarView extends hgucalendar {
 	}
 	
 	function dispCalendarContentRegist() {
-	
+		debugPrint("regcheck");
 		// editor 모듈 사용하기
 		// 에디터 모델 인스턴스 얻기
 
