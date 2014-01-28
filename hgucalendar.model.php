@@ -1,11 +1,22 @@
 <?php
 /**
- * @class  memoModel
+ * @class  hgucalendarModel
  * @author CRA (developers@developers.com)
- * @brief Model class of the memo module
+ * @brief Model class of the hgucalendar module
  **/
 
-class memoModel extends memo {
+class hgucalendarModel extends hgucalendar {
+	/** 
+	* @brief 초기화
+	**/
+	function init(){
+	}
+
+	//목록 가져오기
+	function getHgucalendarEvent($args){
+		$output = executeQueryArray('hgucalendar.getEvent', $args);
+		return $output;
+	}
 
 }
 ?>
