@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * @class  memoView
  * @author CRA (developers@developers.com)
@@ -7,7 +7,7 @@
 
 class hgucalendarView extends hgucalendar {
 	function init() {
-		// °ü¸®ÀÚ ÅÛÇÃ¸´ ÆÄÀÏÀÇ °æ·Î ¼³Á¤ (tpl)
+		// ê´€ë¦¬ìž í…œí”Œë¦¿ íŒŒì¼ì˜ ê²½ë¡œ ì„¤ì • (tpl)
             $template_path = sprintf("%stpl/",$this->module_path);
             $this->setTemplatePath($template_path);
 	}
@@ -18,22 +18,22 @@ class hgucalendarView extends hgucalendar {
 	}
 
 	function dispHgucalendarUser(){
-		// ³»¿ë ÀÛ¼º½Ã °ËÁõÀ» À§ÇØ »ç¿ëµÇ´Â XmlJSFilter 
+		// ë‚´ìš© ìž‘ì„±ì‹œ ê²€ì¦ì„ ìœ„í•´ ì‚¬ìš©ë˜ëŠ” XmlJSFilter 
 		debugPrint("here");
 		Context::addJsFilter($this->module_path.'tpl/filter', 'user_insert.xml');
 
-	    // ³»¿ë ÀÛ¼ºÈ­¸é ÅÛÇÃ¸´ ÆÄÀÏ ÁöÁ¤ register.html
+	    // ë‚´ìš© ìž‘ì„±í™”ë©´ í…œí”Œë¦¿ íŒŒì¼ ì§€ì • register.html
 		$this->setTemplateFile('register');
 	}
 	
 	function dispCalendarContentRegist() {
 	
-		// editor ¸ðµâ »ç¿ëÇÏ±â
-		// ¿¡µðÅÍ ¸ðµ¨ ÀÎ½ºÅÏ½º ¾ò±â
+		// editor ëª¨ë“ˆ ì‚¬ìš©í•˜ê¸°
+		// ì—ë””í„° ëª¨ë¸ ì¸ìŠ¤í„´ìŠ¤ ì–»ê¸°
 
 		$oDocumentModel = &getModel('document');
 
-		// ¿É¼Ç Á¤ÇÏ±â
+		// ì˜µì…˜ ì •í•˜ê¸°
 		$option->allow_fileupload = true;
 		$option->content_style = 'default';
 		$option->content_font = null;
@@ -48,14 +48,21 @@ class hgucalendarView extends hgucalendar {
 		$option->primary_key_name = 'document_srl';
 		$option->content_key_name = 'content';
  
-		// ¿¡µðÅÍ HTML Á¤ÇÏ±â
+		// ì—ë””í„° HTML ì •í•˜ê¸°
 		$oDocument = $oDocumentModel->getDocument();
 		Context::set('oDocument', $oDocument);
 		
 		
-		// °ü¸®ÀÚ ÅÛÇÃ¸´ ÆÄÀÏÀÇ °æ·Î ¼³Á¤ (tpl)
+		// ê´€ë¦¬ìž í…œí”Œë¦¿ íŒŒì¼ì˜ ê²½ë¡œ ì„¤ì • (tpl)
         $template_path = sprintf("%stpl/",$this->module_path);
         $this->setTemplatePath($template_path);
+			
+		$this->setTemplateFile('event_reg');
+	
+	}
+}
+?>
+ath($template_path);
 			
 		$this->setTemplateFile('event_reg');
 	
