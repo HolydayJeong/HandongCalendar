@@ -1,11 +1,12 @@
-<query id="userReg" action="select">
+<query id="userReg" action="insert">
     <tables>
         <table name="applicant" />
     </tables>
     <columns>
-        <column name="*" />
+        <column name="groupname" var="groupname" notnull="notnull"/>
+		<column name="category" var="category" notnull="notnull"/>
+		<column name="phone" var="phone"/>
+		<column name="id" var="id" notnull="notnull"/>
+		<column name="regdate" var="regdate" notnull="notnull"/>
     </columns>
-    <conditions>
-        <condition operation="equal" column="groupname" default="groupname" />
-    </conditions>
 </query>

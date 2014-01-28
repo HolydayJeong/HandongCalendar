@@ -3,9 +3,11 @@
         <table name="applicant" />
     </tables>
     <columns>
-        <column name="*" />
+        <column name="groupname" />
     </columns>
     <conditions>
-        <condition operation="equal" column="groupname" var="groupname"/>
+        <condition operation="equal" column="groupname"/>
     </conditions>
+    <navigation>
+    </navigation>
 </query>

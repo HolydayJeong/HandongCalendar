@@ -7,37 +7,36 @@
 
 class hgucalendarController extends hgucalendar {
 	 /**
-         * @brief ì´ˆê¸°í™”
+         * @brief ÃÊ±âÈ­
          **/
         function init() {
         }
  
         /**
-         * @brief BOOK ì…ë ¥
+         * @brief BOOK ÀÔ·Â
          **/
         function procHgucalendarUserWrite() {
  
-            // request ê°’ì„ ëª¨ë‘ ë°›ìŒ
+            // request °ªÀ» ¸ğµÎ ¹ŞÀ½
             $obj = Context::getRequestVars();
-			debugPrint($obj);
  
-            // ë‹¨ì²´ëª… í™•ì¸
-            //$obj->module_srl = Context::get('groupname');
+            // ´ÜÃ¼¸í È®ÀÎ
+            $obj->module_srl = Context::get('groupname');
  
-            //book_srl í™•ì¸
+            //book_srl È®ÀÎ
             //$book_srl = Context::get('book_srl');
  
-            // book_srlì— ë”°ë¼ ìƒˆë¡œ ì…ë ¥í•˜ê±°ë‚˜ ìˆ˜ì •í•˜ê¸° ìœ„í•´
+            // book_srl¿¡ µû¶ó »õ·Î ÀÔ·ÂÇÏ°Å³ª ¼öÁ¤ÇÏ±â À§ÇØ
             //if($book_srl) {
  
-                // ë“±ë¡ëœ ë‹¨ì²´ì¸ì§€ í™•ì¸
-                $output = executeQuery('hgucalender.regCheck', $obj);
+                // module_srlÀÌ ÀÖÀ¸¸é update
+                $output = executeQuery("hgucalender.regCheck", $obj);
 				debugPrint($output);
                 $this->setMessage('success_updated');
  
-            //} else {
+            }// else {
  
-                // module_srlì´ ì—†ìœ¼ë©´ insert
+                // module_srlÀÌ ¾øÀ¸¸é insert
                // $output = executeQuery("book.insertBook", $obj);
                 //$this->setMessage('success_registed');
  

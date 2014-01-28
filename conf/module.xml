@@ -5,8 +5,6 @@
 		<permission action="dispHgucalendarAdminShow" target="manager" />
 
 		<permission action="procHgucalendarAdminInsertHgucalendar" target="manager" />
-
-
     </permissions>
     <actions>
 		<action name="dispHgucalendarShow" type="view" index="true" />
@@ -16,7 +14,7 @@
 		<action name="dispHgucalendarAdminInsertHgucalendar" type="view" standalone="true" />
 
 		<action name="procHgucalendarAdminInsertHgucalendar" type="controller" standalone="true" />
-		<action name="procHgucalendarUserWrite" type="controller"/>
+		<action name="procHgucalendarUserWrite" type="controller" standalone="true" />
 		
 	</actions>
 	<menus>
