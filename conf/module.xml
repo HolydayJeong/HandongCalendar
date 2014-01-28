@@ -15,6 +15,7 @@
 
 		<action name="procHgucalendarAdminInsertHgucalendar" type="controller" standalone="true" />
 		<action name="procHgucalendarUserWrite" type="controller" standalone="true" />
+		<action name="dispCalendarContentRegist" type="view" index="true"/>
 		
 	</actions>
 	<menus>

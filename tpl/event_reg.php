@@ -1,37 +1,16 @@
 <?php
 /**
- * @class  memoView
+ * @class  calendarView
  * @author CRA (developers@developers.com)
- * @brief View class of memo module
+ * @brief View class of calendar module
  **/
 
-class hgucalendarView extends hgucalendar {
-	function init() {
-		// 관리자 템플릿 파일의 경로 설정 (tpl)
-            $template_path = sprintf("%stpl/",$this->module_path);
-            $this->setTemplatePath($template_path);
-	}
-
-	function dispHgucalendarShow() {
-		$this->setTemplateFile('calendar');
-		
-	}
-
-	function dispHgucalendarUser(){
-		// 내용 작성시 검증을 위해 사용되는 XmlJSFilter 
-		debugPrint("here");
-		Context::addJsFilter($this->module_path.'tpl/filter', 'user_insert.xml');
-
-	    // 내용 작성화면 템플릿 파일 지정 register.html
-		$this->setTemplateFile('register');
-	}
-	
-	function dispCalendarContentRegist() {
+    function dispCalendarAdminIndex() {
 	
 		// editor 모듈 사용하기
 		// 에디터 모델 인스턴스 얻기
 
-		$oDocumentModel = &getModel('document');
+		$oEditorModel = &getModel('editor');
 
 		// 옵션 정하기
 		$option->allow_fileupload = true;
@@ -47,18 +26,18 @@ class hgucalendarView extends hgucalendar {
 		$option->colorset = 'white_text_usehtml';
 		$option->primary_key_name = 'document_srl';
 		$option->content_key_name = 'content';
- 
+		 
 		// 에디터 HTML 정하기
-		$oDocument = $oDocumentModel->getDocument();
-		Context::set('oDocument', $oDocument);
-		
-		
+		$editor = $oEditorModel->getEditor($upload_target_srl, $option);
+		Context::set('editor', $editor);
+
+
 		// 관리자 템플릿 파일의 경로 설정 (tpl)
         $template_path = sprintf("%stpl/",$this->module_path);
         $this->setTemplatePath($template_path);
 			
 		$this->setTemplateFile('event_reg');
-	
-	}
-}
+
+		}
+		
 ?>

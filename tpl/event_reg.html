@@ -1,0 +1,55 @@
+
+<body leftmargin="0" topmargain="0" marginheight="0">
+<br><br>
+<form action="./" method="post" >
+ 	<input type="hidden" name="document_srl"/>
+	<input type="hidden" name="content"/>
+	
+	<input type="hidden" name="act" value="procHgucalendarUserWrite">
+	<table width="500" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#EBDBF2" style="border:0px #3333333 solid;border-top-width:3px;">
+	  <tr>
+	   <td colspan="2" align="center"><b>일정 등록<b></td>
+	  </tr>
+	 
+	   <tr>
+		<td bgcolor="#EFD8F1" align="center">주최</td>
+		<td bgcolor="#E8E8E8">
+		 <input type="text" name="writer" id="writer" size="20">
+		</td>
+	   </tr>
+
+	   <tr>
+		<td bgcolor="#EFD8F1" align="center">가격</td>
+		<td bgcolor="#E8E8E8">
+		 <input type="text" name="price" id="price" size="20">
+		</td>
+	   </tr>
+	   
+	   <tr>
+		<td bgcolor="#EFD8F1" align="center">연락처</td>
+		<td bgcolor="#E8E8E8">
+		 <input type="text" name="phone" id="number" size="20">
+		</td>
+	   </tr>
+
+	   <tr>
+		<td bgcolor="#EFD8F1" align="center">시간</td>
+		<td bgcolor="#E8E8E8">
+		<select name="time" class="time">
+		<option value="">선택</option>
+		<option value="00">00</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		</td>
+	   </tr>
+
+	   <tr>
+		<td colspan="2" align="center">
+		<input type="submit" id="submit" value="등록">
+		<input type="submit" id="close" value="취소">
+		</td>
+	   </tr>
+	  </table>
+	  {$oDocument->getEditor()}	 
+ </form>
+ </body>
