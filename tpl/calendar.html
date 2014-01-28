@@ -2,11 +2,19 @@
 <load target="css/fullcalendar.print.css"/>
 <load target="js/fullcalendar.min.js"/>
 <script>
-
+function register()
+		{
+			var url = "modules/hgucalendar/tpl/register.html";
+			var option = "width=500px, height=500px, resizable=yes, scrollbars=no, status=no;'";
+			window.open(url,'',option);
+			
+			//current_url.setQuery('act','dispBookAdminList').setQuery('module_srl','');
+			//if(page) url = url.setQuery('page',page);
+			//location.href = url;
+		}
 (function($){
 
 	$(document).ready(function() {
-	
 		var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
@@ -21,8 +29,10 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
+				alert(start+" / "+end);
+				if(confirm('일정을 등록하시겠습니까?') == true)
+					register();
+				else if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
 							title: title,
@@ -83,7 +93,13 @@
 				}
 			]
 		});
-		
+		$('.fc-header-left').append('<span class="fc-button  fc-state-default fc-corner-left fc-corner-right" id="groupreg">단체등록</span>');
+
+		$('#groupreg').click(function(){
+			var url = "modules/hgucalendar/tpl/register.html";
+			var option = "width=500px, height=500px, resizable=yes, scrollbars=no, status=no;'";
+			window.open(url,'',option);
+		});
 	});
 })(jQuery);
 
@@ -107,12 +123,8 @@
 <body>
 <div id='calendar'></div>
 
-<!-- ��� ���� ��ư -->
-<div class="clear">
-    <div class="fr">
-		<a href="{getUrl('act','dispCalendarAdminInsertBook')}" class="button black strong"><span>{$lang->cmd_make}</span></a>
-	</div>
-</div>
+<!-- 생성 -->
+<a href="#" onclick="register()">일정등록</a> 
 
 </body>
 </html>
