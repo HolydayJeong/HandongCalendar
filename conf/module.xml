@@ -18,6 +18,7 @@
 
 		<action name="procHgucalendarAdminInsertHgucalendar" type="controller" standalone="true" />
 		<action name="procHgucalendarUserReg" type="controller" standalone="true" />
+		<action name="procHgucalendarEventReg" type="controller" standalone="true" />	
 		
 	</actions>
 	<menus>
