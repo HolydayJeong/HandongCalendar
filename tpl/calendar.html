@@ -1,17 +1,25 @@
+<head>
+</head>
 <load target="css/fullcalendar.css"/>
 <load target="css/fullcalendar.print.css"/>
 <load target="js/fullcalendar.min.js"/>
 <script>
 function register()
-		{
-			var url = "modules/hgucalendar/tpl/register.html";
-			var option = "width=500px, height=500px, resizable=yes, scrollbars=no, status=no;'";
-			window.open(url,'',option);
-			
-			//current_url.setQuery('act','dispBookAdminList').setQuery('module_srl','');
-			//if(page) url = url.setQuery('page',page);
-			//location.href = url;
-		}
+{
+	var url = "modules/hgucalendar/tpl/register.html";
+	var option = "width=500px, height=500px, resizable=yes, scrollbars=no, status=no;'";
+	window.open(url,'',option);
+	
+	//current_url.setQuery('act','dispBookAdminList').setQuery('module_srl','');
+	//if(page) url = url.setQuery('page',page);
+	//location.href = url;
+}
+
+function event_reg()
+{
+	location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist";
+}
+
 (function($){
 
 	$(document).ready(function() {
@@ -29,9 +37,9 @@ function register()
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				alert(start+" / "+end);
+				//alert(start+" / "+end);
 				if(confirm('일정을 등록하시겠습니까?') == true)
-					register();
+					event_reg();
 				else if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -119,12 +127,7 @@ function register()
 		}
 
 </style>
-</head>
-<body>
 <div id='calendar'></div>
 
 <!-- 생성 -->
-<a href="#" onclick="register()">일정등록</a> 
-
-</body>
-</html>
+<a href="{getUrl('act','dispHgucalendarContentRegist')}">일정등록</a> 

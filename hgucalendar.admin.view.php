@@ -47,5 +47,6 @@ class hgucalendarAdminView extends hgucalendar {
 		 Context::set('layout_list', $layout_list);
 		 $this->setTemplateFile('hgucalendar_admin_insert');
 	}
+
 }
 ?>

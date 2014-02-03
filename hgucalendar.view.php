@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * @class  memoView
  * @author CRA (developers@developers.com)
@@ -38,7 +38,6 @@ class hgucalendarView extends hgucalendar {
 	}
 
 	function dispHgucalendarShow() {
-		debugPrint('calendar');
 		$this->setTemplateFile('calendar');
 		
 	}
@@ -52,7 +51,7 @@ class hgucalendarView extends hgucalendar {
 		$this->setTemplateFile('register');
 	}
 	
-	function dispCalendarContentRegist() {
+	function dispHgucalendarContentRegist() {
 		debugPrint("regcheck");
 		// editor 모듈 사용하기
 		// 에디터 모델 인스턴스 얻기
@@ -84,7 +83,11 @@ class hgucalendarView extends hgucalendar {
         $this->setTemplatePath($template_path);
 			
 		$this->setTemplateFile('event_reg');
-	
+	}
+
+	function dispHgucalendarEventReg(){
+		debugPrint('event_reg');
+		$this->setTemplateFile('event_reg');
 	}
 }
 ?>

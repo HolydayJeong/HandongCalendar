@@ -4,9 +4,13 @@
     </tables>
     <columns>
         <column name="groupname" />
+		<column name="category" />
     </columns>
     <conditions>
-        <condition operation="equal" column="groupname"/>
+        <condition operation="equal" column="groupname" var="groupname"/>
+		<group pipe="and">
+			<condition operation="equal" column="category" var="category"/>
+		</group>
     </conditions>
     <navigation>
     </navigation>
