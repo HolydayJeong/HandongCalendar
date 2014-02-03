@@ -52,7 +52,11 @@ class hgucalendarView extends hgucalendar {
 	}
 	
 	function dispHgucalendarContentRegist() {
-		debugPrint("regcheck");
+		// request object 다 받기
+        $obj = Context::getRequestVars();
+		Context::set('start', $obj->start);
+		Context::set('end', $obj->end);
+
 		// editor 모듈 사용하기
 		// 에디터 모델 인스턴스 얻기
 

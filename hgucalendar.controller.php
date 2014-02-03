@@ -14,7 +14,7 @@ class hgucalendarController extends hgucalendar {
         /**
          * @brief BOOK 입력
          **/
-        function procHgucalendarUserWrite() {
+        function procHgucalendarUserReg() {
  
             // request 값을 모두 받음
             $obj = Context::getRequestVars();
@@ -35,5 +35,11 @@ class hgucalendarController extends hgucalendar {
 			$this->setMessage('success_updated');
 			} 
         }
+
+		function procHgucalendarUserWrite()	{
+			$obj = Context::getRequestVars();
+			debugPrint($obj);
+
+		}
 }
 ?>

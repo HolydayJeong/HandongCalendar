@@ -15,9 +15,11 @@ function register()
 	//location.href = url;
 }
 
-function event_reg()
+function event_reg(start, end)
 {
-	location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist";
+	start = start.getFullYear()+"-"+(start.getMonth()+1)+"-"+start.getDate();
+	end = end.getFullYear()+"-"+(end.getMonth()+1)+"-"+end.getDate();
+	location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist&start="+start+"&end="+end;
 }
 
 (function($){
@@ -39,7 +41,7 @@ function event_reg()
 			select: function(start, end, allDay) {
 				//alert(start+" / "+end);
 				if(confirm('일정을 등록하시겠습니까?') == true)
-					event_reg();
+					event_reg(start, end);
 				else if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
