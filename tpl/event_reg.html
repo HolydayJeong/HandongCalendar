@@ -53,7 +53,7 @@
 			{
 				write('<tr><th scope="row">');
 				write((i+1)+'일 시간</th>');
-				write('<td><select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="hour" value="" size="10"/>시<input type="text" name="minute" value="" size="10"/>분</td>  </tr>');
+				write('<td><select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="start_hour" value="" size="10"/>시<input type="text" name="start_minute" value="" size="10"/>분	~	<select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="end_hour" value="" size="10"/>시<input type="text" name="end_minute" value="" size="10"/>분</td>  </tr>');
 			}
 
 		}
