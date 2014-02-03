@@ -54,8 +54,18 @@ class hgucalendarView extends hgucalendar {
 	function dispHgucalendarContentRegist() {
 		// request object 다 받기
         $obj = Context::getRequestVars();
-		Context::set('start', $obj->start);
-		Context::set('end', $obj->end);
+		$startY = substr($obj->start, 0, 4);
+		$startM = substr($obj->start, 5, 2);
+		$startD = substr($obj->start, 8, 2);
+		$endY = substr($obj->end, 0, 4);
+		$endM = substr($obj->end, 5, 2);
+		$endD = substr($obj->end, 8, 2);
+		Context::set('startY', $startY);
+		Context::set('startM', $startM);
+		Context::set('startD', $startD);
+		Context::set('endY', $endY);
+		Context::set('endM', $endM);
+		Context::set('endD', $endD);
 
 		// editor 모듈 사용하기
 		// 에디터 모델 인스턴스 얻기

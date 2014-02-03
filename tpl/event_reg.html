@@ -8,21 +8,24 @@
 	<input type="hidden" name="start" value={$start}>
 	<input type="hidden" name="end" value={$end}>
 	<script>
-	start = {$start};
-	end = {$end};
-	alert("start = "+start+"end = "+end);
-	date = start - end;
-	alert(date);
+		date = {$endD}-{$startD};
+		if(date>4){
+			alert('5일 이상 지정할수 없습니다. = '+({$endD}-{$startD}));
+			history.go(-1);
+		}
+		else
+			alert(date);
+
 	</script>
 	<table width="900" border="1" align="center" cellpadding="5" cellspacing="0" summary="">
 		<col width="150px"/>
 	  <tr>
 		<td>시작일자 :</td>
-		<td>{$start}</td>
+		<td>{$startY}-{$startM}-{$startD}</td>
 	  </tr>
 	  <tr>
 		<td>마감일자 :</td>
-		<td>{$end}</td>
+		<td>{$endY}-{$endM}-{$endD}</td>
 	  </tr>
 	  <tr>
 	   <td colspan="2" align="center"><b>일정 등록<b></td>
@@ -44,41 +47,33 @@
 	   </tr>
 	
 	  <script>date++;
-		for (i=0;i<date;i++ )
+		for (i=0;i<date;i++)
 		{
 			with(document)
 			{
 				write('<tr><th scope="row">');
-				write(({$start}+i)+' 시간</th><td>');
-				write('<select name="time" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="time" value="" size="10"/>시<input type="text" name="time" value="" size="10"/>분</td>  </tr>');
+				write((i+1)+'일 시간</th>');
+				write('<td><select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="hour" value="" size="10"/>시<input type="text" name="minute" value="" size="10"/>분</td>  </tr>');
 			}
 
 		}
 
 	</script>
 	   
-	  
 	  <div calss="editor">
-	  
 	  <tr>
-
 	  	<td colspan="2">	 
 	  	  {$oDocument->getEditor()}
 	  	 </td>
 	  	  </tr>
 	  	  </table>
-	  	  
 	  </div>
 	  <div class="tag fileLink">
                 <input type="hidden" name="editor_sequence_srl" value="5"  class="exISt" />
-                
         </div>
-
 
 	   <div align="center">
 	   	<span class="button"><input type="submit" id="submit" value="등록" accesskey="s"/></span>
 	   	<span class="button"><input type="reset" id="close" value="취소"/></span>
 	   </div>
-
-
  </form>

@@ -17,8 +17,33 @@ function register()
 
 function event_reg(start, end)
 {
-	start = start.getFullYear()+"-"+(start.getMonth()+1)+"-"+start.getDate();
-	end = end.getFullYear()+"-"+(end.getMonth()+1)+"-"+end.getDate();
+	// 형식을 0000-00-00 으로 만들기
+	if(start.getMonth()<9){
+		if(start.getDate()<9){
+			start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_0"+start.getDate();
+		}
+		else
+			start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_"+start.getDate();
+	}
+	else if(start.getDate()<9){
+		start = start.getFullYear()+"_"+(start.getMonth()+1)+"_0"+start.getDate();
+	}
+	else
+		start = start.getFullYear()+"_"+(start.getMonth()+1)+"_"+start.getDate();
+	
+	if(end.getMonth()<9){
+		if(end.getDate()<9){
+			end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_0"+end.getDate();
+		}
+		else
+			end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_"+end.getDate();
+	}
+	else if(end.getDate()<9){
+		end = end.getFullYear()+"_"+(end.getMonth()+1)+"_0"+end.getDate();
+	}
+	else
+		end = end.getFullYear()+"_"+(end.getMonth()+1)+"_"+end.getDate();
+
 	location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist&start="+start+"&end="+end;
 }
 
