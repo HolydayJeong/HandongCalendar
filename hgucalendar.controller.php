@@ -36,7 +36,7 @@ class hgucalendarController extends hgucalendar {
 			} 
         }
 
-		function procHgucalendarUserWrite()	{
+		function procHgucalendarEventReg()	{
 			$obj = Context::getRequestVars();
 			debugPrint($obj);
 

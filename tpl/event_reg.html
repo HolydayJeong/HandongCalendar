@@ -4,12 +4,23 @@
  	<input type="hidden" name="document_srl"/>
 	<input type="hidden" name="content"/>
 	
-	<input type="hidden" name="act" value="procHgucalendarUserWrite">
+	<input type="hidden" name="act" value="procHgucalendarEventReg">
+	<input type="hidden" name="start" value={$start}>
+	<input type="hidden" name="end" value={$end}>
+	<script>
+	start = {$start};
+	end = {$end};
+	alert("start = "+start+"end = "+end);
+	date = start - end;
+	alert(date);
+	</script>
 	<table width="900" border="1" align="center" cellpadding="5" cellspacing="0" summary="">
 		<col width="150px"/>
 	  <tr>
 		<td>시작일자 :</td>
 		<td>{$start}</td>
+	  </tr>
+	  <tr>
 		<td>마감일자 :</td>
 		<td>{$end}</td>
 	  </tr>
@@ -31,17 +42,21 @@
 		<th scope="row">연락처</th>
 			<td><input type="text" name="phone" value="" size="80"/></td>
 	   </tr>
+	
+	  <script>date++;
+		for (i=0;i<date;i++ )
+		{
+			with(document)
+			{
+				write('<tr><th scope="row">');
+				write(({$start}+i)+' 시간</th><td>');
+				write('<select name="time" class="time"><option value="">선택</option><option value="00">00</option><option value="11">11</option><option value="12">12</option></td>  </tr>');
+			}
 
-	   <tr>
-		<th scope="row">시간</th>
-			<td>
-		<select name="time" class="time">
-		<option value="">선택</option>
-		<option value="00">00</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		</td>
-	   </tr>
+		}
+
+	</script>
+	   
 	  
 	  <div calss="editor">
 	  
