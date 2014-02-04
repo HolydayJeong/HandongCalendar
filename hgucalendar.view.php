@@ -38,8 +38,55 @@ class hgucalendarView extends hgucalendar {
 	}
 
 	function dispHgucalendarShow() {
+		// 달력 목록 가져오는 모델 생성
+		$ohgucalendarModel = &getModel('hgucalendar');
+		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
+
+		
+		// Context에 세팅하기
+		Context::set('eventinfo', $this->arrangeHgucalendarInfo($output));
+		$eventinfo = Context::gets('eventinfo');
+		debugPrint($eventinfo);
+		// 정보를 보내기
 		$this->setTemplateFile('calendar');
 		
+	}
+
+	function arrangeHgucalendarInfo($output){
+		if($output->data){
+			foreach($output->data as $val){
+				$obj = null;
+				$obj->event_srl = $val->event_srl;
+				$obj->eventname = $val->eventname;
+				$obj->runtime = $val->runtime;
+				$obj->sdate = $val->startdate;
+				$obj->edate = $val->enddate;
+				$obj->stime1_1 = $val->stime1_1;
+				$obj->stime1_2 = $val->stime1_2;
+				$obj->stime2_1 = $val->stime2_1;
+				$obj->stime2_2 = $val->stime2_2;
+				$obj->stime3_1 = $val->stime3_1;
+				$obj->stime3_2 = $val->stime3_2;
+				$obj->stime4_1 = $val->stime4_1;
+				$obj->stime4_2 = $val->stime4_2;
+				$obj->stime5_1 = $val->stime5_1;
+				$obj->stime5_2 = $val->stime5_2;
+			}
+			return $obj;
+		}
+	}
+
+	function dispHgucalendarEventView() {
+		// 달력 목록 가져오는 모델 생성
+		$ohgucalendarModel = &getModel('hgucalendar');
+		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
+		
+		// Context에 세팅하기
+		Context::set('eventinfo', $this->arrangeHgucalendarInfo($output));
+		$eventinfo = Context::get('eventinfo');
+		debugPrint($eventinfo);
+		// 정보를 보내기
+		$this->setTemplateFile('calendar');
 	}
 
 	function dispHgucalendarUser(){

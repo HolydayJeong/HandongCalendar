@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table name = "event">
 	<column name="event_srl" type="number" size="20" notnull="notnull" auto_increment="auto_increment"  primary_key="primary_key"/>
+	<column name="category" type="varchar" size="10" notnull="notnull"/>
     <column name="eventname" type="varchar" size="30" notnull="notnull"/>
 	<column name="place" type="varchar" size="20" notnull="notnull"/>
     <column name="id" type="varchar" size="40" notnull="notnull"/>
 	<column name="phone" type="varchar" size="40" notnull="notnull"/>
 	<column name="fare" type="number" size="7"/>
-	<column name="contents" type="varchar" size="500" notnull="notnull"/>
+	<column name="content" type="varchar" size="1000" notnull="notnull"/>
 	<column name="startdate" type="varchar" size="10" notnull="notnull" />
 	<column name="enddate" type="varchar" size="10" notnull="notnull" />
-	<column name="stime1-1" type="time"/>
-	<column name="stime1-2" type="time"/>
-	<column name="stime2-1" type="time"/>
-	<column name="stime2-2" type="time"/>
-	<column name="stime3-1" type="time"/>
-	<column name="stime3-2" type="time"/>
-	<column name="stime4-1" type="time"/>
-	<column name="stime4-2" type="time"/>
-	<column name="stime5-1" type="time"/>
-	<column name="stime5-2" type="time"/>
-    <column name="regdate" type="varchar" size="20" notnull="notnull" />
+	<column name="stime1_1" type="time"/>
+	<column name="stime1_2" type="time"/>
+	<column name="stime2_1" type="time"/>
+	<column name="stime2_2" type="time"/>
+	<column name="stime3_1" type="time"/>
+	<column name="stime3_2" type="time"/>
+	<column name="stime4_1" type="time"/>
+	<column name="stime4_2" type="time"/>
+	<column name="stime5_1" type="time"/>
+	<column name="stime5_2" type="time"/>
+    <column name="regdate" type="timestamp" notnull="notnull" />
 </table>    

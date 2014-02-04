@@ -4,10 +4,24 @@
     </tables>
     <columns>
 		<column name="eventname" var="eventname" notnull="notnull"/>
-        <column name="groupname" var="groupname" notnull="notnull"/>
-		<column name="category" var="category" notnull="notnull"/>
+		<column name="category" var="category" notnull="notnull" default="동아리"/>
+		<column name="place" var="place" notnull="notnull"/>
+		<column name="id" var="id" notnull="notnull" default="jsi"/>
 		<column name="phone" var="phone"/>
-		<column name="id" var="id" notnull="notnull"/>
-		<column name="regdate" var="regdate" notnull="notnull"/>
+		<column name="fare" var="fare"/>
+		<column name="runtime" var="runtime"/>
+		<column name="content" var="content"/>
+		<column name="startdate" var="start" notnull="notnull"/>
+        <column name="enddate" var="end" notnull="notnull"/>
+		<column name="stime1_1" var="stime1_1"/>
+		<column name="stime1_2" var="stime1_2"/>
+		<column name="stime2_1" var="stime2_1"/>
+		<column name="stime2_2" var="stime2_2"/>
+		<column name="stime3_1" var="stime3_1"/>
+		<column name="stime3_2" var="stime3_2"/>
+		<column name="stime4_1" var="stime4_1"/>
+		<column name="stime4_2" var="stime4_2"/>
+		<column name="stime5_1" var="stime5_1"/>
+		<column name="stime5_2" var="stime5_2"/>
     </columns>
 </query>
