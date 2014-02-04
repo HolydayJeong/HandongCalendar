@@ -8,7 +8,11 @@
 	<input type="hidden" name="start" value={$start}>
 	<input type="hidden" name="end" value={$end}>
 	<script>
-		date = {$endD}-{$startD};
+		//두 날짜 사이 계산.
+		sDate = new Date({$startY}, ({$startM}-1), {$startD})
+		eDate = new Date({$endY}, ({$endM}-1), {$endD})
+		date = Math.ceil((eDate.getTime() - sDate.getTime())/(1000*60*60*24));
+		// //두 날짜 사이 계산 
 		if(date>4){
 			alert('5일 이상 지정할수 없습니다. = '+({$endD}-{$startD}));
 			history.go(-1);
@@ -17,33 +21,36 @@
 			alert(date);
 
 	</script>
-	<table width="900" border="1" align="center" cellpadding="5" cellspacing="0" summary="">
-		<col width="150px"/>
-	  <tr>
-		<td>시작일자 :</td>
-		<td>{$startY}-{$startM}-{$startD}</td>
-	  </tr>
-	  <tr>
-		<td>마감일자 :</td>
-		<td>{$endY}-{$endM}-{$endD}</td>
-	  </tr>
-	  <tr>
-	   <td colspan="2" align="center"><b>일정 등록<b></td>
-	  </tr>
+	<table width=80% border="1" align="center" cellpadding="5" cellspacing="0" summary="">
 
+	  <tr>
+		<td align="center">시작일자</td>
+		<td colspan='2'>{$startY}-{$startM}-{$startD}</td>
+	  </tr>
+	  <tr>
+		<td align="center">마감일자</td>
+		<td colspan='2'>{$endY}-{$endM}-{$endD}</td>
+	  </tr>
+	  <tr>
+	   <td colspan="3" align="center"><b>일정 등록<b></td>
+	  </tr>
 	   <tr>
-	    <th scope="row">주최</th>
-	    	<td><input type="text" name="groupname" value="" size="80"/></td>
+	    <th scope="row">제 목</th>
+		 		<td colspan='2'><input type="text" name="eventname" value="" size=120%/></td>
+	   </tr>
+	   <tr>
+			<th scope="row">주 최</th>
+		 		<td colspan='2'><input type="text" name="groupname" value="" size=120%/></td>
 	   </tr>
 
 	   <tr>
-		<th scope="row">가격</th>
-			<td><input type="text" name="fare" value="" size="80"/></td>
+		<th scope="row">가 격</th>
+			<td colspan='2'><input type="text" name="fare" value="" size=30%/></td>
 	   </tr>
 	   
 	   <tr>
 		<th scope="row">연락처</th>
-			<td><input type="text" name="phone" value="" size="80"/></td>
+			<td colspan='2'><input type="text" name="phone" value="" size=50%/></td>
 	   </tr>
 	
 	  <script>date++;
@@ -53,7 +60,7 @@
 			{
 				write('<tr><th scope="row">');
 				write((i+1)+'일 시간</th>');
-				write('<td><select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="start_hour" value="" size="10"/>시<input type="text" name="start_minute" value="" size="10"/>분	~	<select name="time'+(i+1)+'" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="end_hour" value="" size="10"/>시<input type="text" name="end_minute" value="" size="10"/>분</td>  </tr>');
+				write('<td align="center">1 : <select name="time'+(i+1)+'-1" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'-1" size="2"/>시<input type="text" name="sminute'+(i+1)+'-1" size="2"/>분</td><td align="center">2 :	<select name="time"'+(i+1)+'-2" class="time"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'-2" value="" size="2"/>시<input type="text" name="sminute'+(i+1)+'-2" value="" size="2"/>분</td></tr>');
 			}
 
 		}
@@ -62,7 +69,7 @@
 	   
 	  <div calss="editor">
 	  <tr>
-	  	<td colspan="2">	 
+	  	<td colspan="3">	 
 	  	  {$oDocument->getEditor()}
 	  	 </td>
 	  	  </tr>
