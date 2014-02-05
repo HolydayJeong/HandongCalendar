@@ -46,7 +46,7 @@ class hgucalendarView extends hgucalendar {
 		// Context에 세팅하기
 		Context::set('eventinfo', $output->data);
 		$eventinfo = Context::get('eventinfo');
-		debugPrint($eventinfo);
+
 		// 정보를 보내기
 		$this->setTemplateFile('calendar');
 		
@@ -80,11 +80,9 @@ class hgucalendarView extends hgucalendar {
 		// 달력 목록 가져오는 모델 생성
 		$ohgucalendarModel = &getModel('hgucalendar');
 		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
-		debugPrint($output);
 		// Context에 세팅하기
 		Context::set('eventinfo', $output->data);
 		$eventinfo = Context::get('eventinfo');
-		debugPrint($eventinfo);
 		// 정보를 보내기
 		$this->setTemplateFile('calendar');
 	}

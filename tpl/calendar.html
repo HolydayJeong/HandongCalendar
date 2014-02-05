@@ -5,6 +5,7 @@
 <load target="js/fullcalendar.min.js"/>
 <script>
 
+	console.log('here');
 function register()
 {
 	var url = "modules/hgucalendar/tpl/register.html";
@@ -85,17 +86,42 @@ function event_reg(start, end)
 			events: [
 				{
 					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
+					start: new Date('2014-2-10 9:00'),
+					end: new Date('2014-2-10 11:00'),
+					allDay:false
+				},
+				{
+					title: '바람과 함께 사라지다',
+					start: new Date(y, m, 28, 10, 30),
+					end: new Date(y, m, 28, 11, 40),
+					url: 'http://www.google.co.kr',
+					allDay: false
+				},
+				{
+					title: '소소한 일상',
+					start: new Date(y, m, 28, 12, 30),
+					end: new Date(y, m, 28, 13, 40),
+					url: 'http://www.google.co.kr',
+					allDay: false
+				},
+				{
+					title: '레미제라블',
+					start: new Date(y, m, 29, 10, 30),
+					end: new Date(y, m, 29, 11, 40),
+					url: 'http://www.google.co.kr',
+					allDay: false
 				}
 			]
 		});
 
 		<!--@foreach($eventinfo as $no => $event)-->
-		eventarr = {title: '{$event->eventname}', start: new Date(y,m,{$no})};
+		stime1_1 = '{$event->stime1_1}';
+		stime1_1 = stime1_1.substr(0,5);
+		console.log('what');
 
-		calendar.fullCalendar('renderEvent',eventarr, true);
+		eventarr = {title: '{$event->eventname}', start: new Date('{$event->startdate}')};
+
+		calendar.fullCalendar('renderEvent',eventarr, false);
 
 		<!--@end-->
 
