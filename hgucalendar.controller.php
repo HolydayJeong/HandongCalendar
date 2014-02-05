@@ -70,6 +70,7 @@ class hgucalendarController extends hgucalendar {
 			debugPrint($obj);
 			$output = executeQuery("hgucalendar.eventReg", $obj);
 			debugPrint($output);
+			echo('<script>alert("등록되었습니다.");location.href="./";</script>');
 
 		}
 }
