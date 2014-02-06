@@ -50,22 +50,24 @@ class hgucalendarController extends hgucalendar {
 				8=>array($obj->time4_2, $obj->shour4_2, $obj->sminute4_2, "stime4_2"),
 				9=>array($obj->time5_1, $obj->shour5_1, $obj->sminute5_1, "stime5_1"),
 				10=>array($obj->time5_2, $obj->shour5_2, $obj->sminute5_2, "stime5_2"));
-			for($i=1; $i<5; $i++){
-				if("오후" == $arr[$i][0]){
-					if(12>$arr[$i][1]){
-						if($arr[$i][2]<10)
-							$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
-						else
-							$timesum = ($arr[$i][1]+12).":".$arr[$i][2];
+			for($i=1; $i<11; $i++){
+				if('' != $arr[$i][0]){
+					if("오후" == $arr[$i][0]){
+						if(12>$arr[$i][1]){ // 시간
+							if($arr[$i][2]<10) // 분
+								$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
+							else
+								$timesum = ($arr[$i][1]+12).":".$arr[$i][2];
+						}
 					}
-				}
-				else{
-					if($arr[$i][2]<10)
-							$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
-					else
-						$timesum = $arr[$i][1].":".$arr[$i][2];
-				}
+					else{
+						if($arr[$i][2]<10)
+								$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
+						else
+							$timesum = $arr[$i][1].":".$arr[$i][2];
+					}
 				$obj->$arr[$i][3] = "'".$timesum."'";
+				}
 			}
 			debugPrint($obj);
 			$output = executeQuery("hgucalendar.eventReg", $obj);

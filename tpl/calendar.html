@@ -5,7 +5,6 @@
 <load target="js/fullcalendar.min.js"/>
 <script>
 
-	console.log('here');
 function register()
 {
 	var url = "modules/hgucalendar/tpl/register.html";
@@ -115,13 +114,70 @@ function event_reg(start, end)
 		});
 
 		<!--@foreach($eventinfo as $no => $event)-->
+		date_mod = '{$event->startdate}';
+		date_mod = date_mod.substr(0,8);
+		//console.log("date_mod = "+date_mod);
+		edate = new Date('{$event->startdate}');
+		eday = edate.getDate();
+		//console.log("eday = "+eday);
+
 		stime1_1 = '{$event->stime1_1}';
-		stime1_1 = stime1_1.substr(0,5);
-		console.log('what');
+		stime1_1 = date_mod+eday+' '+stime1_1.substr(0,5);
+		eventarr = {title: '{$event->eventname}', start: new Date(stime1_1), allDay:false};
+		calendar.fullCalendar('renderEvent',eventarr);
+		//console.log('stime1_1 = '+stime1_1);
+		//console.log('1-2 : {$event->stime1_2}');
+		<!--@if($event->stime1_2 != '')-->                   
+		stime1_2 = '{$event->stime1_2}';
+		stime1_2 = date_mod+eday+' '+stime1_2.substr(0,5);
+		calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime1_2), allDay:false});
+		<!--@end-->
 
-		eventarr = {title: '{$event->eventname}', start: new Date('{$event->startdate}')};
+		<!--@if($event->stime2_1 != '')-->
+		stime2_1 = '{$event->stime2_1}';
+		stime2_1 = date_mod+(eday+1)+' '+stime2_1.substr(0,5);
+		calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime2_1), allDay:false});
+			<!--@if($event->stime2_2 != '')-->
+			stime2_2 = '{$event->stime2_2}';
+			stime2_2 = date_mod+(eday+1)+' '+stime2_2.substr(0,5);
+			calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime2_2), allDay:false});
+			<!--@end-->
 
-		calendar.fullCalendar('renderEvent',eventarr, false);
+			<!--@if($event->stime3_1 != '')-->
+			stime3_1 = '{$event->stime3_1}';
+			stime3_1 = date_mod+(eday+2)+' '+stime3_1.substr(0,5);
+			calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime3_1), allDay:false});
+				<!--@if($event->stime3_2 != '')-->
+				stime3_2 = '{$event->stime3_2}';
+				stime3_2 = date_mod+(eday+2)+' '+stime3_2.substr(0,5);
+				calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime3_2), allDay:false});
+				<!--@end-->
+
+				<!--@if($event->stime4_1 != '')-->
+				stime4_1 = '{$event->stime4_1}';
+				stime4_1 = date_mod+(eday+3)+' '+stime4_1.substr(0,5);
+				console.log(stime4_1);
+				calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime4_1), allDay:false});
+					<!--@if($event->stime4_2 != '')-->
+					stime4_2 = '{$event->stime4_2}';
+					stime4_2 = date_mod+(eday+3)+' '+stime4_2.substr(0,5);
+					calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime4_2), allDay:false});
+					<!--@end-->
+
+					<!--@if($event->stime5_1 != '')-->
+					stime5_1 = '{$event->stime5_1}';
+					stime5_1 = date_mod+(eday+4)+' '+stime5_1.substr(0,5);
+					calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime5_1), allDay:false});
+						<!--@if($event->stime5_2 != '')-->
+						stime5_2 = '{$event->stime5_2}';
+						stime5_2 = date_mod+(eday+4)+' '+stime5_2.substr(0,5);
+						calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime5_2), allDay:false});
+						<!--@end-->
+					<!--@end-->
+				<!--@end-->
+
+			<!--@end-->
+		<!--@end-->
 
 		<!--@end-->
 
