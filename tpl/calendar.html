@@ -183,10 +183,40 @@ function event_reg(start, end)
 
 		$('.fc-header-right').append('<span class="fc-button  fc-state-default fc-corner-left fc-corner-right" id="groupreg">단체등록</span>');
 
-		$('#groupreg').click(function(){
-			var url = "modules/hgucalendar/tpl/register.html";
-			var option = "width=500px, height=500px, resizable=yes, scrollbars=no, status=no;'";
-			window.open(url,'',option);
+		$('#groupreg').button().click(function(){
+			 $( "#dialog-form" ).dialog( "open" );
+		});
+		
+		
+		$( "#dialog-form" ).dialog({
+		      autoOpen: false,
+		      height: 400,
+		      width: 650,
+		      modal: true
+		});
+		
+		$("#submit").click(function(){
+			if($('#writer').val()==""){
+				alert("작성자를 입력해 주세요.");
+				$('#writer').focus();
+				return false;
+			}
+			if($('#association').val()==""){
+				alert("단체명을 입력해 주세요.");
+				$('#association').focus();
+				return false;
+			}
+			if($('#field').val()==""){
+				alert("분야를 선택해 주세요.");
+				$('#field').focus();
+				return false;
+			}
+			$('#form').submit();
+		});
+
+		$("#close").click(function(){
+			$( "#dialog-form" ).dialog( "close" );
+			return false;
 		});
 	});
 })(jQuery);
@@ -211,3 +241,59 @@ function event_reg(start, end)
 
 <!-- 생성 -->
 <a href="{getUrl('act','dispHgucalendarContentRegist')}">일정등록</a> 
+
+<div id="dialog-form">
+
+	<style type="text/css">
+		a1{
+		font-size:20px;
+		color:black;
+		font-weight:bold;
+		}
+		a2{
+		font-size:15px;
+		color:black;
+		}
+		
+	</style>
+
+	<br><br>
+	<input type="hidden" name="act" value="procHgucalendarUserReg">
+	<table width="500" border="0" align="center" cellpadding="5" cellspacing="0" style="border:0px #3333333 solid;border-top-width:3px;">
+	  <tr>
+	   <td colspan="2" align="center"><a1>단체 등록</a1></td>
+	  </tr>	
+	   <tr>
+		<td colspan="2" align="center"><a2>자세히 입력해 주세요.</a2></td>
+	   </tr>	 
+	   <tr>
+		<td align="center"><a2>작성자</a2></td>
+		<td>
+		 <input type="text" name="id" id="writer" size="20">
+		</td>
+	   </tr>
+	   <tr>
+		<td align="center"><a2>단체명</a2></td>
+		<td>
+		 <input type="text" name="groupname" id="association" size="20">
+		</td>
+	   </tr>
+	   <tr>
+		<td align="center"><a2>분 야</a2></td>
+		<td>
+		<select name="category" class="field">
+		<option value=""><a2>선택</a2></option>
+		<option value="동아리 행사"><a2>동아리 행사</a2></option>
+		<option value="외부 행사"><a2>외부 행사</a2></option>
+		<option value="내부 행사"><a2>내부 행사(특강, 축제 등)</a2></option>
+		</td>
+	   </tr>	 
+	   <tr>
+		<td colspan="2" align="center" font-size="10px">
+		<input type="submit" id="submit" value="등록">
+		<input type="reset" id="close" value="취소">
+		</td>
+	   </tr>
+	  </table>
+ </form>
+</div>
