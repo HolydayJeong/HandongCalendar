@@ -1,93 +1,135 @@
 
 <br><br>
 <form action="./" method="post" >
- 	<input type="hidden" name="document_srl"/>
-	<input type="hidden" name="content"/>
-	
-	<input type="hidden" name="act" value="procHgucalendarEventReg">
-	<input type="hidden" name="start" value={$start}>
-	<input type="hidden" name="end" value={$end}>
-	<script>
-		//두 날짜 사이 계산.
-		sDate = new Date({$startY}, ({$startM}-1), {$startD})
-		eDate = new Date({$endY}, ({$endM}-1), {$endD})
-		date = Math.ceil((eDate.getTime() - sDate.getTime())/(1000*60*60*24));
-		// //두 날짜 사이 계산 
-		if(date>4){
-			alert('5일 이상 지정할수 없습니다. = '+({$endD}-{$startD}));
-			history.go(-1);
-		}
-	</script>
-	<table width=80% border="1" align="center" cellpadding="5" cellspacing="0" summary="">
-
-	  <tr>
-		<td align="center">시작일자</td>
-		<td colspan='2'>{$startY}-{$startM}-{$startD}</td>
-	  </tr>
-	  <tr>
-		<td align="center">마감일자</td>
-		<td colspan='2'>{$endY}-{$endM}-{$endD}</td>
-	  </tr>
-	  <tr>
-	   <td colspan="3" align="center"><b>일정 등록<b></td>
-	  </tr>
-	   <tr>
-	    <th scope="row">제 목</th>
-		 		<td colspan='2'><input type="text" name="eventname" value="" size=120%/></td>
-	   </tr>
-	   <tr>
-			<th scope="row">주 최</th>
-		 		<td colspan='2'><input type="text" name="groupname" value="" size=120%/></td>
-	   </tr>
-	   
-	   <tr>
-		<th scope="row">장 소</th>
-			<td colspan='2'><input type="text" name="place" value="" size=50%/></td>
-	   </tr>
-
-	   <tr>
-		<th scope="row">가 격</th>
-			<td colspan='2'><input type="text" name="fare" value="" size=30%/></td>
-	   </tr>
-	   
-	   <tr>
-		<th scope="row">연락처</th>
-			<td colspan='2'><input type="text" name="phone" value="" size=50%/>'-'포함해서 입력하세요.</td>
-	   </tr>
-	
-	  <script>date++;
-		for (i=0;i<date;i++)
-		{
-			with(document)
-			{
-				write('<tr><th scope="row">');
-				write((i+1)+'일 시간</th>');
-				write('<td align="center">1 : <select name="time'+(i+1)+'_1"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'_1" size="2"/>시<input type="text" name="sminute'+(i+1)+'_1" size="2"/>분</td><td align="center">2 :	<select name="time'+(i+1)+'_2" ><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'_2" size="2"/>시<input type="text" name="sminute'+(i+1)+'_2" size="2"/>분</td></tr>');
+    <input type="hidden" name="document_srl"/>
+   <input type="hidden" name="content"/>
+   
+   <input type="hidden" name="act" value="procHgucalendarEventReg">
+   <input type="hidden" name="start" value={$start}>
+   <input type="hidden" name="end" value={$end}>
+   <script>
+      //두 날짜 사이 계산.
+      sDate = new Date({$startY}, ({$startM}-1), {$startD})
+      eDate = new Date({$endY}, ({$endM}-1), {$endD})
+      date = Math.ceil((eDate.getTime() - sDate.getTime())/(1000*60*60*24));
+      // //두 날짜 사이 계산 
+      if(date>4){
+         alert('5일 이상 지정할수 없습니다. = '+({$endD}-{$startD}));
+         history.go(-1);
+      }
+      
+      (function($){
+      $("#submit").click(function(){
+			if($('#eventname').val()==""){
+				alert("제목을 입력해 주세요.");
+				$('#eventname').focus();
+				return false;
 			}
+			if($('#groupname').val()==""){
+				alert("주최를 입력해 주세요.");
+				$('#groupname').focus();
+				return false;
+			}
+			if($('#place').val()==""){
+				alert("장소를 입력해 주세요.");
+				$('#place').focus();
+				return false;
+			}
+			if($('#fare').val()==""){
+				alert("가격을 입력해 주세요.");
+				$('#fare').focus();
+				return false;
+			}
+			if($('#phone').val()==""){
+				alert("연락처를 입력해 주세요.");
+				$('#phone').focus();
+				return false;
+			}
+			if($('#shour').val()==""){
+				alert("시간을 입력해 주세요.");
+				$('#shour').focus();
+				return false;
+			}
+			if($('#runtime').val()==""){
+				alert("런타임을 입력해 주세요.");
+				$('#runtime').focus();
+				return false;
+			}
+			$('#form').submit();
+		});
+      })(jQuery);
+      
+   </script>
+   <table width=80% border="1" align="center" cellpadding="5" cellspacing="0" summary="">
 
-		}
+     <tr>
+      <td align="center">시작일자</td>
+      <td colspan='2'>{$startY}-{$startM}-{$startD}</td>
+     </tr>
+     <tr>
+      <td align="center">마감일자</td>
+      <td colspan='2'>{$endY}-{$endM}-{$endD}</td>
+     </tr>
+     <tr>
+      <td colspan="3" align="center"><b>일정 등록<b></td>
+     </tr>
+      <tr>
+       <th scope="row">제 목</th>
+             <td colspan='2'><input type="text" name="eventname" value="" size=120%/></td>
+      </tr>
+      <tr>
+         <th scope="row">주 최</th>
+             <td colspan='2'><input type="text" name="groupname" value="" size=120%/></td>
+      </tr>
+      
+      <tr>
+      <th scope="row">장 소</th>
+         <td colspan='2'><input type="text" name="place" value="" size=50%/></td>
+      </tr>
 
-	</script>
-	
-	<tr>
-		<th scope="row">런타임</th>
-			<td colspan='2'><input type="text" name="runtime" value="" size=120%/></td>
-	   </tr>
-	   
-	  <div calss="editor">
-	  <tr>
-	  	<td colspan="3">	 
-	  	  {$oDocument->getEditor()}
-	  	 </td>
-	  	  </tr>
-	  	  </table>
-	  </div>
-	  <div class="tag fileLink">
+      <tr>
+      <th scope="row">가 격</th>
+         <td colspan='2'><input type="text" name="fare" value="" size=30%/></td>
+      </tr>
+      
+      <tr>
+      <th scope="row">연락처</th>
+         <td colspan='2'><input type="text" name="phone" value="" size=50%/>'-'포함해서 입력하세요.</td>
+      </tr>
+   
+     <script>date++;
+      for (i=0;i<date;i++)
+      {
+         with(document)
+         {
+            write('<tr><th scope="row">');
+            write((i+1)+'일 시간</th>');
+            write('<td align="center">1 : <select name="time'+(i+1)+'_1"><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'_1" size="2"/>시<input type="text" name="sminute'+(i+1)+'_1" size="2"/>분</td><td align="center">2 :   <select name="time'+(i+1)+'_2" ><option value="">선택</option><option value="오전">오전</option><option value="오후">오후</option><input type="text" name="shour'+(i+1)+'_2" size="2"/>시<input type="text" name="sminute'+(i+1)+'_2" size="2"/>분</td></tr>');
+         }
+
+      }
+
+   </script>
+   
+   <tr>
+      <th scope="row">런타임</th>
+         <td colspan='2'><input type="text" name="runtime" value="" size=120%/></td>
+      </tr>
+      
+     <div calss="editor">
+     <tr>
+        <td colspan="3">    
+          {$oDocument->getEditor()}
+         </td>
+          </tr>
+          </table>
+     </div>
+     <div class="tag fileLink">
                 <input type="hidden" name="editor_sequence_srl" value="5"  class="exISt" />
         </div>
 
-	   <div align="center">
-	   	<span class="button"><input type="submit" id="submit" value="등록" accesskey="s"/></span>
-	   	<span class="button"><input type="reset" id="close" value="취소"/></span>
-	   </div>
+      <div align="center">
+         <span class="button"><input type="submit" id="submit" value="등록" accesskey="s"/></span>
+         <span class="button"><input type="reset" id="close" value="취소"/></span>
+      </div>
  </form>
