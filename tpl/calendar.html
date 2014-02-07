@@ -187,10 +187,11 @@ function event_reg(start, end)
 			 $( "#dialog-form" ).dialog( "open" );
 		});
 		
+		
 		$( "#dialog-form" ).dialog({
 		      autoOpen: false,
-		      height: 350,
-		      width: 550,
+		      height: 400,
+		      width: 650,
 		      modal: true
 		});
 		
@@ -243,52 +244,56 @@ function event_reg(start, end)
 
 <div id="dialog-form">
 
-	<style>
-		table.ex {width:50%; margin:0 auto; align:center; border-collapse:collapse}
-		.ex th, .ex td {padding:5px 10px}
-		.ex caption {font-weight:700; font-size:20px; padding:5px; text-align:center; margin-bottom:5px}
-		.ex tbody th {text-align:center; width:20}
-		.ex tbody td.content {text-align:center; width:30%}
-		.ex tbody tr.odd {background:#f9f9f9}
-		.ex tbody tr.odd th {background:#f2f2f2}	
+	<style type="text/css">
+		a1{
+		font-size:20px;
+		color:black;
+		font-weight:bold;
+		}
+		a2{
+		font-size:15px;
+		color:black;
+		}
+		
 	</style>
 
 	<br><br>
 	<input type="hidden" name="act" value="procHgucalendarUserReg">
-	<table class="ex">
-		<caption>단체 등록</caption>
-		<tbody>
-			<tr>
-				<td bgcolor="#f9f9f9" colspan="2" align="center">자세히 입력해 주세요.</td>
-			</tr>	 
-			<tr class="odd">
-				<th>작성자</th>
-					<td class="content">
-						<input type="text" name="id" id="writer" size="20">
-					</td>
-			</tr>
-			<tr class="odd">
-				<th>단체명</th>
-					<td class="content">
-						<input type="text" name="groupname" id="association" size="20">
-					</td>
-			</tr>
-			<tr class="odd">
-				<th>분 야</th>
-					<td class="content">
-						<select name="category" class="field">
-						<option value=""><a2>선택</a2></option>
-						<option value="동아리 행사"><a2>동아리 행사</a2></option>
-						<option value="외부 행사"><a2>외부 행사</a2></option>
-						<option value="내부 행사"><a2>내부 행사(특강, 축제 등)</a2></option>
-					</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" id="submit" value="등록">
-					<input type="reset" id="close" value="취소">
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<table width="500" border="0" align="center" cellpadding="5" cellspacing="0" style="border:0px #3333333 solid;border-top-width:3px;">
+	  <tr>
+	   <td colspan="2" align="center"><a1>단체 등록</a1></td>
+	  </tr>	
+	   <tr>
+		<td colspan="2" align="center"><a2>자세히 입력해 주세요.</a2></td>
+	   </tr>	 
+	   <tr>
+		<td align="center"><a2>작성자</a2></td>
+		<td>
+		 <input type="text" name="id" id="writer" size="20">
+		</td>
+	   </tr>
+	   <tr>
+		<td align="center"><a2>단체명</a2></td>
+		<td>
+		 <input type="text" name="groupname" id="association" size="20">
+		</td>
+	   </tr>
+	   <tr>
+		<td align="center"><a2>분 야</a2></td>
+		<td>
+		<select name="category" class="field">
+		<option value=""><a2>선택</a2></option>
+		<option value="동아리 행사"><a2>동아리 행사</a2></option>
+		<option value="외부 행사"><a2>외부 행사</a2></option>
+		<option value="내부 행사"><a2>내부 행사(특강, 축제 등)</a2></option>
+		</td>
+	   </tr>	 
+	   <tr>
+		<td colspan="2" align="center" font-size="10px">
+		<input type="submit" id="submit" value="등록">
+		<input type="reset" id="close" value="취소">
+		</td>
+	   </tr>
+	  </table>
+ </form>
 </div>
