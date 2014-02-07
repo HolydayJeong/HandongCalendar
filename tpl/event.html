@@ -1,7 +1,7 @@
 <form action="./" method="post">
 	
 	<style>
-		table.ex {width:30%; margin:0 auto; align:center; border-collapse:collapse}
+		table.ex {width:100%; margin:0 auto; align:center; border-collapse:collapse}
 		.ex th, .ex td {padding:5px 10px}
 		.ex caption {font-weight:700; font-size:20px; padding:5px; text-align:center; margin-bottom:5px}
 		.ex tbody th {text-align:center; width:12%}
@@ -11,52 +11,52 @@
 	</style>
 
 	<table class="ex">
-		<caption>ÀÏ Á¤</caption>
+		<caption>ì¼ ì •</caption>
 		
 		<tbody>
 		<tr class="odd">
-			<th scope="row">½ÃÀÛÀÏÀÚ</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ì‹œì‘ì¼ì</th>
+				<td class="content" colspan='2'>{$eventinfo->startdate}</td>
 		</tr>
 
 		<tr>
-			<th scope="row">¸¶°¨ÀÏÀÚ</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ë§ˆê°ì¼ì</th>
+				<td class="content" colspan='2'>{$eventinfo->enddate}</td>
 		</tr>
 
 		<tr class="odd">
-			<th scope="row">Á¦ ¸ñ</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ì œ ëª©</th>
+				<td class="content" colspan='2'>{$eventinfo->eventname}</td>
 		</tr>
 
 		<tr>
-			<th scope="row">ÁÖ ÃÖ</th>
+			<th scope="row">ì£¼ ìµœ</th>
 				<td class="content" colspan='2'></td>
 		</tr>
       
 		<tr class="odd">
-			<th scope="row">Àå ¼Ò</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ì¥ ì†Œ</th>
+				<td class="content" colspan='2'>{$eventinfo->place}</td>
 		</tr>
 
 		<tr>
-			<th scope="row">°¡ °İ</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ê°€ ê²©</th>
+				<td class="content" colspan='2'>{$eventinfo->fare}</td>
 		</tr>
       
 		<tr class="odd">
-			<th scope="row">¿¬¶ôÃ³</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ì—°ë½ì²˜</th>
+				<td class="content" colspan='2'>{$eventinfo->phone}</td>
 		</tr>
   
 		<tr>
-			<th scope="row">·±Å¸ÀÓ</th>
-				<td class="content" colspan='2'></td>
+			<th scope="row">ëŸ°íƒ€ì„</th>
+				<td class="content" colspan='2'>{$eventinfo->runtime}</td>
 		</tr>
       
-		<tr class="odd">
-			<th scope="row">³» ¿ë</th>
-				<td class="content" colspan="2"></td>
+		<tr height=100% class="odd">
+			<th scope="row">ë‚´ ìš©</th>
+				<td class="content" colspan="2">{$oDocument->getContent()}</td>
 		</tr>
 		</tbody>
 	</table>

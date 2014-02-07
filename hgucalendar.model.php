@@ -13,8 +13,13 @@ class hgucalendarModel extends hgucalendar {
 	}
 
 	//목록 가져오기
+	function getHgucalendarEventList($args){
+		$output = executeQueryArray('hgucalendar.getEventList', $args);
+		return $output;
+	}
+
 	function getHgucalendarEvent($args){
-		$output = executeQueryArray('hgucalendar.getEvents', $args);
+		$output = executeQueryArray('hgucalendar.getEvent', $args);
 		return $output;
 	}
 

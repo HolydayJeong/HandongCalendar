@@ -113,6 +113,7 @@ function event_reg(start, end)
 			]
 		});
 
+		//이벤트 추가하기.
 		<!--@foreach($eventinfo as $no => $event)-->
 		date_mod = '{$event->startdate}';
 		date_mod = date_mod.substr(0,8);
@@ -123,14 +124,14 @@ function event_reg(start, end)
 
 		stime1_1 = '{$event->stime1_1}';
 		stime1_1 = date_mod+eday+' '+stime1_1.substr(0,5);
-		eventarr = {title: '{$event->eventname}', start: new Date(stime1_1), allDay:false};
+		eventarr = {title: '{$event->eventname}', start: new Date(stime1_1), url:"./index.php?mid=CultureCalendar&act=dispHgucalendarEventView&document_srl={$event->document_srl}", allDay:false};
 		calendar.fullCalendar('renderEvent',eventarr);
 		//console.log('stime1_1 = '+stime1_1);
 		//console.log('1-2 : {$event->stime1_2}');
 		<!--@if($event->stime1_2 != '')-->                   
 		stime1_2 = '{$event->stime1_2}';
 		stime1_2 = date_mod+eday+' '+stime1_2.substr(0,5);
-		calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime1_2), allDay:false});
+		calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime1_2), url:"./index.php?mid=CultureCalendar&act=dispHgucalendarEventView&document_srl={$event->document_srl}", allDay:false});
 		<!--@end-->
 
 		<!--@if($event->stime2_1 != '')-->
@@ -175,7 +176,6 @@ function event_reg(start, end)
 						<!--@end-->
 					<!--@end-->
 				<!--@end-->
-
 			<!--@end-->
 		<!--@end-->
 

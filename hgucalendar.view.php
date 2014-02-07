@@ -40,12 +40,13 @@ class hgucalendarView extends hgucalendar {
 	function dispHgucalendarShow() {
 		// 달력 목록 가져오는 모델 생성
 		$ohgucalendarModel = &getModel('hgucalendar');
-		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
+		$output = $ohgucalendarModel->getHgucalendarEventList($obj);
 
 		
 		// Context에 세팅하기
 		Context::set('eventinfo', $output->data);
-		$eventinfo = Context::get('eventinfo');
+		//$eventinfo = Context::get('eventinfo');
+		//debugPrint($eventinfo);
 
 		// 정보를 보내기
 		$this->setTemplateFile('calendar');
@@ -76,20 +77,35 @@ class hgucalendarView extends hgucalendar {
 		}
 	}
 
-	function dispHgucalendarEventView() {
-		// 달력 목록 가져오는 모델 생성
+	function dispHgucalendarEventView() { //이벤트 세부내용 보여주기
+		//Document모델 가져오기
+		$oDocumentModel = &getModel('document');
+		$oDocument = $oDocumentModel->getDocument();
+
+		//document_srl 받아오기
+		$obj = Context::getRequestVars();
+		$document_srl = $obj->document_srl;
+		$oDocument->document_srl = $document_srl;
+
+		$oDocument->setDocument($document_srl);
+		$oDocument->add('module_srl', $this->module_srl);
+
+		Context::set('document_title', $oDocument->variables[title]);
+		Context::set('document_srl', $document_srl);
+		Context::set('oDocument',$oDocument);
+
 		$ohgucalendarModel = &getModel('hgucalendar');
 		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
 		// Context에 세팅하기
-		Context::set('eventinfo', $output->data);
+		Context::set('eventinfo', $output->data[0]);
 		$eventinfo = Context::get('eventinfo');
+		
 		// 정보를 보내기
-		$this->setTemplateFile('calendar');
+		$this->setTemplateFile('event');
 	}
 
 	function dispHgucalendarUser(){
 		// 내용 작성시 검증을 위해 사용되는 XmlJSFilter 
-		debugPrint("here");
 		Context::addJsFilter($this->module_path.'tpl/filter', 'user_insert.xml');
 
 	    // 내용 작성화면 템플릿 파일 지정 register.html
@@ -145,7 +161,6 @@ class hgucalendarView extends hgucalendar {
 	}
 
 	function dispHgucalendarEventReg(){
-		debugPrint('event_reg');
 		$this->setTemplateFile('event_reg');
 	}
 }

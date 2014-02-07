@@ -10,7 +10,7 @@
 		<column name="phone" var="phone"/>
 		<column name="fare" var="fare"/>
 		<column name="runtime" var="runtime"/>
-		<column name="content" var="content"/>
+		<column name="document_srl" var="document_srl"/>
 		<column name="startdate" var="start" notnull="notnull"/>
         <column name="enddate" var="end" notnull="notnull"/>
 		<column name="stime1_1" var="stime1_1"/>

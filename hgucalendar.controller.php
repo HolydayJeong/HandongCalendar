@@ -69,9 +69,20 @@ class hgucalendarController extends hgucalendar {
 				$obj->$arr[$i][3] = "'".$timesum."'";
 				}
 			}
-			debugPrint($obj);
+			
+			$obj1->title = $obj->eventname;
+			$obj1->content = $obj->content;
+			$document_srl = getNextSequence(); //document serial 번호 부여
+			$obj1->document_srl = $document_srl;
+			$obj1->module_srl = $this->module_srl;
+			$obj1->allow_comment = 'Y';
+			$obj1->allow_trackback = 'Y';
+
+			$oDocumentController = &getController('document');
+			$output = $oDocumentController->insertDocument($obj1);
+			$obj->document_srl = $document_srl;
+
 			$output = executeQuery("hgucalendar.eventReg", $obj);
-			debugPrint($output);
 			echo('<script>alert("등록되었습니다.");location.href="./";</script>');
 
 		}
