@@ -101,7 +101,7 @@ class hgucalendarView extends hgucalendar {
 		$eventinfo = Context::get('eventinfo');
 		
 		// 정보를 보내기
-		$this->setTemplateFile('event');
+		$this->setTemplateFile('calendar');
 	}
 
 	function dispHgucalendarUser(){

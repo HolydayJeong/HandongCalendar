@@ -50,6 +50,15 @@ function event_reg(start, end)
 
 (function($){
 
+	function callback_event(ret_obj, responses, params, form_object) {
+		console.log(ret_obj);
+//여기만 조금 건들면 됨_성일오빠가하기!!!!!!!!!!!어딘지못찾겠음!
+
+		$( "#place" ).html(ret_obj["place"]);
+
+		$( "#dialog-form_2" ).dialog( "open" );
+	}
+
 	$(document).ready(function() {
 		var date = new Date();
 		var d = date.getDate();
@@ -81,6 +90,23 @@ function event_reg(start, end)
 				}
 				calendar.fullCalendar('unselect');
 			},
+			eventClick: function(document_srl, jsEvent, view) {
+
+				document_srl.document_srl;
+
+				var params={
+					document_srl:"아아아아아",
+					
+					};
+				var responses=["eventinfo"];
+				var form_object={};
+
+				exec_xml('hgucalendar', 'procHgucalendarEventInfo', params, callback_event, responses, params, form_object);
+
+				
+
+			},
+
 			editable: false,
 			events: [
 				{
@@ -116,17 +142,17 @@ function event_reg(start, end)
 		//이벤트 추가하기.
 		<!--@foreach($eventinfo as $no => $event)-->
 		date_mod = '{$event->startdate}';
+		date_mod = date_mod.replace(/_/g, "-");
 		date_mod = date_mod.substr(0,8);
-		//console.log("date_mod = "+date_mod);
-		edate = new Date('{$event->startdate}');
+		console.log("date_mod = "+date_mod);
+		edate = new Date(date_mod);
 		eday = edate.getDate();
-		//console.log("eday = "+eday);
+		console.log("eday = "+eday);
 
 		stime1_1 = '{$event->stime1_1}';
 		stime1_1 = date_mod+eday+' '+stime1_1.substr(0,5);
-		eventarr = {title: '{$event->eventname}', start: new Date(stime1_1), url:"./index.php?mid=CultureCalendar&act=dispHgucalendarEventView&document_srl={$event->document_srl}", allDay:false};
-		calendar.fullCalendar('renderEvent',eventarr);
-		//console.log('stime1_1 = '+stime1_1);
+		calendar.fullCalendar('renderEvent',{title: '{$event->eventname}', start: new Date(stime1_1), url:"./index.php?mid=CultureCalendar&act=dispHgucalendarEventView&document_srl={$event->document_srl}", allDay:false});
+		console.log('stime1_1 = '+stime1_1);
 		//console.log('1-2 : {$event->stime1_2}');
 		<!--@if($event->stime1_2 != '')-->                   
 		stime1_2 = '{$event->stime1_2}';
@@ -189,6 +215,13 @@ function event_reg(start, end)
 		
 		
 		$( "#dialog-form" ).dialog({
+		      autoOpen: false,
+		      height: 400,
+		      width: 650,
+		      modal: true
+		});
+
+		$( "#dialog-form_2" ).dialog({
 		      autoOpen: false,
 		      height: 400,
 		      width: 650,
@@ -296,4 +329,71 @@ function event_reg(start, end)
 	   </tr>
 	  </table>
  </form>
+</div>
+
+<div id="dialog-form_2">
+<form>
+	
+	<style>
+		table.ex {width:100%; margin:0 auto; align:center; border-collapse:collapse}
+		.ex th, .ex td {padding:5px 10px}
+		.ex caption {font-weight:700; font-size:20px; padding:5px; text-align:center; margin-bottom:5px}
+		.ex tbody th {text-align:center; width:12%}
+		.ex tbody td.content {text-align:center; width:40%}
+		.ex tbody tr.odd {background:#f9f9f9}
+		.ex tbody tr.odd th {background:#f2f2f2}
+	</style>
+
+	<table class="ex">
+		<caption>일 정</caption>
+		
+		<tbody>
+		<tr class="odd">
+			<th scope="row">시작일자</th>
+				<td class="content" colspan='2' id="startdate"></td>
+		</tr>
+
+		<tr>
+			<th scope="row">마감일자</th>
+				<td class="content" colspan='2' id="enddate"></td>
+		</tr>
+
+		<tr class="odd">
+			<th scope="row">제 목</th>
+				<td class="content" colspan='2' id="eventname"></td>
+		</tr>
+
+		<tr>
+			<th scope="row">주 최</th>
+				<td class="content" colspan='2'></td>
+		</tr>
+      
+		<tr class="odd">
+			<th scope="row">장 소</th>
+				<td class="content" colspan='2' id="place"></td>
+		</tr>
+
+		<tr>
+			<th scope="row">가 격</th>
+				<td class="content" colspan='2' id="fare"></td>
+		</tr>
+      
+		<tr class="odd">
+			<th scope="row">연락처</th>
+				<td class="content" colspan='2' id="phone"></td>
+		</tr>
+  
+		<tr>
+			<th scope="row">런타임</th>
+				<td class="content" colspan='2' id="runtime"></td>
+		</tr>
+      
+		<tr height=100% class="odd">
+			<th scope="row">내 용</th>
+				<td class="content" colspan="2" id="content"></td>
+		</tr>
+		</tbody>
+	</table>
+	
+</form>
 </div>

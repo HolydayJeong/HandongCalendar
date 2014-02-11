@@ -5,7 +5,7 @@
  * Controller class of memo module
  **/
 
-class hgucalendarController extends hgucalendar {
+	class hgucalendarController extends hgucalendar {
 	 /**
          * @brief 초기화
          **/
@@ -83,8 +83,25 @@ class hgucalendarController extends hgucalendar {
 			$obj->document_srl = $document_srl;
 
 			$output = executeQuery("hgucalendar.eventReg", $obj);
+			debugPrint($output);
 			echo('<script>alert("등록되었습니다.");location.href="./";</script>');
 
 		}
-}
+
+		function procHgucalendarEventInfo() {
+			$myData->document_srl = Context::get('document_srl');
+			// 데이터를 처리합니다.
+			//debugPrint($myData);
+
+			$obj = Context::getRequestVars();
+			$document_srl = $obj->document_srl;
+			$oDocument->document_srl = $document_srl;
+
+			$ohgucalendarModel = &getModel('hgucalendar');
+			$output = $ohgucalendarModel->getHgucalendarEvent($obj);
+
+			$this->add('eventinfo', $output->data[0]);
+			$eventinfo = Context::get('eventinfo');
+		}
+	}
 ?>
