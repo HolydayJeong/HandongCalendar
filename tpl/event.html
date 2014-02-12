@@ -1,64 +1,46 @@
-<form action="./" method="post">
+<form>
 	
-	<style>
-		table.ex {width:100%; margin:0 auto; align:center; border-collapse:collapse}
-		.ex th, .ex td {padding:5px 10px}
-		.ex caption {font-weight:700; font-size:20px; padding:5px; text-align:center; margin-bottom:5px}
-		.ex tbody th {text-align:center; width:12%}
-		.ex tbody td.content {text-align:center; width:40%}
-		.ex tbody tr.odd {background:#f9f9f9}
-		.ex tbody tr.odd th {background:#f2f2f2}
+	<style type="text/css">
+			
 	</style>
 
-	<table class="ex">
-		<caption>일 정</caption>
+	<div>
+	<table width="70%", align="center">
+		<tr>
+			<td colspan='3' height="30px" style="font-family:맑은 고딕;color:black;font-size:30px;">{$eventinfo->eventname}</td>
+			<td rowspan='6'>image</td>
+		</tr>
 		
-		<tbody>
-		<tr class="odd">
-			<th scope="row">시작일자</th>
-				<td class="content" colspan='2'>{$eventinfo->startdate}</td>
+		<tr>
+			<td colspan='2' width="30%" style="font-family:돋움;color:gray;font-size:13px;">{$eventinfo->startdate} ~ {$eventinfo->enddate}</td>
+			<td width="15%"><p style="font-family:돋움;color:gray;font-size:13px;">{$eventinfo->runtime}분</p></td>
 		</tr>
+	
 
 		<tr>
-			<th scope="row">마감일자</th>
-				<td class="content" colspan='2'>{$eventinfo->enddate}</td>
-		</tr>
-
-		<tr class="odd">
-			<th scope="row">제 목</th>
-				<td class="content" colspan='2'>{$eventinfo->eventname}</td>
-		</tr>
-
-		<tr>
-			<th scope="row">주 최</th>
-				<td class="content" colspan='2'>{$eventinfo->groupname}</td>
+			<td width="10%" style="font-family:맑은 고딕;color:black;font-size:15px;" align="center"><b>주 최</b></td>
+			<td colspan='2' style="font-family:맑은 고딕;color:black;font-size:15px;">{$eventinfo->groupname}</td>
 		</tr>
       
-		<tr class="odd">
-			<th scope="row">장 소</th>
-				<td class="content" colspan='2'>{$eventinfo->place}</td>
+		<tr>
+			<td style="font-family:맑은 고딕;color:black;font-size:15px;" align="center"><b>장 소</b></td>
+			<td colspan='2' style="font-family:맑은 고딕;color:black;font-size:15px;">{$eventinfo->place}</td>
 		</tr>
 
 		<tr>
-			<th scope="row">가 격</th>
-				<td class="content" colspan='2'>{$eventinfo->fare}</td>
+			<td style="font-family:맑은 고딕;color:black;font-size:15px;" align="center"><b>가 격</b></td>
+			<td colspan='2' style="font-family:맑은 고딕;color:black;font-size:15px;">{$eventinfo->fare}</td>
 		</tr>
       
-		<tr class="odd">
-			<th scope="row">연락처</th>
-				<td class="content" colspan='2'>{$eventinfo->phone}</td>
-		</tr>
-  
 		<tr>
-			<th scope="row">런타임</th>
-				<td class="content" colspan='2'>{$eventinfo->runtime}</td>
+			<td style="font-family:맑은 고딕;color:black;font-size:15px;" align="center"><b>연락처</b></td>
+			<td colspan='2' style="font-family:맑은 고딕;color:black;font-size:15px;">{$eventinfo->phone}</td>
 		</tr>
-      
-		<tr height=100% class="odd">
-			<th scope="row">내 용</th>
-				<td class="content" colspan="2">{$oDocument->getContent()}</td>
+		
+		<tr align="center">
+				<td colspan='4' style="font-family:맑은 고딕;color:black;font-size:20px;">{$oDocument->getContent()}</td>
 		</tr>
-		</tbody>
+
 	</table>
 	
 </form>

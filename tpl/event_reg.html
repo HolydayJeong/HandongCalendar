@@ -19,16 +19,12 @@
       }
       
       (function($){
-	  $(document).ready(function(){
+	  $(document).ready(function(obj){
+
       $("#submit").click(function(){
 			if($('#eventname').val()==""){
 				alert("제목을 입력해 주세요.");
 				$('#eventname').focus();
-				return false;
-			}
-			else if($('#groupname').val()==""){
-				alert("주최를 입력해 주세요.");
-				$('#groupname').focus();
 				return false;
 			}
 			else if($('#place').val()==""){
@@ -90,10 +86,11 @@
              <td colspan='2'><input type="text" name="eventname" id="eventname" value="" size=120%/></td>
       </tr>
       <tr>
-         <th scope="row">주 최</th>
-             <td colspan='2'><input type="text" name="groupname" id="groupname" value="" size=120%/></td>
+      	<td>
+      		<input type="radio" name="perform" id="perform" value=""/>공연
+      		<input type="radio" name="not_perform" id="not_perform" value=""/>비공연
+      	</td>
       </tr>
-      
       <tr>
       <th scope="row">장 소</th>
          <td colspan='2'><input type="text" name="place" id="place" value="" size=50%/></td>
@@ -125,7 +122,7 @@
    
    <tr>
       <th scope="row">런타임</th>
-         <td colspan='2'><input type="text" name="runtime" id="runtime" value="" size=120%/></td>
+         <td colspan='2'><input type="text" name="runtime" id="runtime" value="" size=120%/>분으로 기입해주세요.(ex. 120분)</td>
       </tr>
       
      <div calss="editor">
@@ -144,4 +141,5 @@
          <span class="button"><input type="submit" id="submit" value="등록" accesskey="s"/></span>
          <span class="button"><input type="reset" id="close" value="취소"/></span>
       </div>
+      
  </form>
