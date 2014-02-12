@@ -18,46 +18,51 @@ function register()
 
 function event_reg(start, end)
 {
-	// 형식을 0000-00-00 으로 만들기
-	if(start.getMonth()<9){
-		if(start.getDate()<9){
-			start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_0"+start.getDate();
+	<!--@if($is_logged)-->
+		// 형식을 0000-00-00 으로 만들기
+		if(start.getMonth()<9){
+			if(start.getDate()<9){
+				start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_0"+start.getDate();
+			}
+			else
+				start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_"+start.getDate();
+		}
+		else if(start.getDate()<9){
+			start = start.getFullYear()+"_"+(start.getMonth()+1)+"_0"+start.getDate();
 		}
 		else
-			start = start.getFullYear()+"_0"+(start.getMonth()+1)+"_"+start.getDate();
-	}
-	else if(start.getDate()<9){
-		start = start.getFullYear()+"_"+(start.getMonth()+1)+"_0"+start.getDate();
-	}
-	else
-		start = start.getFullYear()+"_"+(start.getMonth()+1)+"_"+start.getDate();
-	
-	if(end.getMonth()<9){
-		if(end.getDate()<9){
-			end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_0"+end.getDate();
+			start = start.getFullYear()+"_"+(start.getMonth()+1)+"_"+start.getDate();
+		
+		if(end.getMonth()<9){
+			if(end.getDate()<9){
+				end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_0"+end.getDate();
+			}
+			else
+				end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_"+end.getDate();
+		}
+		else if(end.getDate()<9){
+			end = end.getFullYear()+"_"+(end.getMonth()+1)+"_0"+end.getDate();
 		}
 		else
-			end = end.getFullYear()+"_0"+(end.getMonth()+1)+"_"+end.getDate();
-	}
-	else if(end.getDate()<9){
-		end = end.getFullYear()+"_"+(end.getMonth()+1)+"_0"+end.getDate();
-	}
-	else
-		end = end.getFullYear()+"_"+(end.getMonth()+1)+"_"+end.getDate();
+			end = end.getFullYear()+"_"+(end.getMonth()+1)+"_"+end.getDate();
 
-	location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist&start="+start+"&end="+end;
+		location.href="./index.php?mid=CultureCalendar&act=dispHgucalendarContentRegist&start="+start+"&end="+end;
+	
+	<!--@else-->
+		alert('로그인을 해주세요');
+	<!--@end-->
 }
 
 (function($){
 
-	function callback_event(ret_obj, responses, params, form_object) {
-		console.log(ret_obj);
+	//function callback_event(ret_obj, responses, params, form_object) {
+	//	console.log(ret_obj);
 //여기만 조금 건들면 됨_성일오빠가하기!!!!!!!!!!!어딘지못찾겠음!
 
-		$( "#place" ).html(ret_obj["place"]);
+	//	$( "#place" ).html(ret_obj["place"]);
 
-		$( "#dialog-form_2" ).dialog( "open" );
-	}
+	//	$( "#dialog-form_2" ).dialog( "open" );
+	//} // 모달팝업 뷰. 추후 구현 예정.
 
 	$(document).ready(function() {
 		var date = new Date();
@@ -77,6 +82,7 @@ function event_reg(start, end)
 				//alert(start+" / "+end);
 				if(confirm('일정을 등록하시겠습니까?') == true)
 					event_reg(start, end);
+				
 				else if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -90,7 +96,7 @@ function event_reg(start, end)
 				}
 				calendar.fullCalendar('unselect');
 			},
-			eventClick: function(document_srl, jsEvent, view) {
+			/*eventClick: function(document_srl, jsEvent, view) {
 
 				document_srl.document_srl;
 
@@ -105,7 +111,7 @@ function event_reg(start, end)
 
 				
 
-			},
+			},*/ // 모달팝업 뷰. 추후 구현 예정.
 
 			editable: false,
 			events: [
@@ -143,10 +149,10 @@ function event_reg(start, end)
 		<!--@foreach($eventinfo as $no => $event)-->
 		date_mod = '{$event->startdate}';
 		date_mod = date_mod.replace(/_/g, "-");
-		date_mod = date_mod.substr(0,8);
 		console.log("date_mod = "+date_mod);
 		edate = new Date(date_mod);
-		eday = edate.getDate();
+		date_mod = date_mod.substr(0,8); // 연,월까지만 자르기(일은다르게)
+		eday = edate.getDate();			// 일만 표기
 		console.log("eday = "+eday);
 
 		stime1_1 = '{$event->stime1_1}';
@@ -276,8 +282,7 @@ function event_reg(start, end)
 <a href="{getUrl('act','dispHgucalendarContentRegist')}">일정등록</a> 
 
 <div id="dialog-form">
-
-	<style type="text/css">
+ 	<style type="text/css">
 		a1{
 		font-size:20px;
 		color:black;
@@ -289,8 +294,7 @@ function event_reg(start, end)
 		}
 		
 	</style>
-
-	<br><br>
+ <form action="./" method="post">
 	<input type="hidden" name="act" value="procHgucalendarUserReg">
 	<table width="500" border="0" align="center" cellpadding="5" cellspacing="0" style="border:0px #3333333 solid;border-top-width:3px;">
 	  <tr>
@@ -301,9 +305,7 @@ function event_reg(start, end)
 	   </tr>	 
 	   <tr>
 		<td align="center"><a2>작성자</a2></td>
-		<td>
-		 <input type="text" name="id" id="writer" size="20">
-		</td>
+		<td>{$logged_info->user_id}</td>
 	   </tr>
 	   <tr>
 		<td align="center"><a2>단체명</a2></td>
@@ -312,13 +314,13 @@ function event_reg(start, end)
 		</td>
 	   </tr>
 	   <tr>
-		<td align="center"><a2>분 야</a2></td>
+		<td align="center"><a2>단체분류</a2></td>
 		<td>
 		<select name="category" class="field">
 		<option value=""><a2>선택</a2></option>
-		<option value="동아리 행사"><a2>동아리 행사</a2></option>
-		<option value="외부 행사"><a2>외부 행사</a2></option>
-		<option value="내부 행사"><a2>내부 행사(특강, 축제 등)</a2></option>
+		<option value="동아리 행사"><a2>동아리</a2></option>
+		<option value="외부 행사"><a2>학회</a2></option>
+		<option value="내부 행사"><a2>학교단체</a2></option>
 		</td>
 	   </tr>	 
 	   <tr>
@@ -328,9 +330,9 @@ function event_reg(start, end)
 		</td>
 	   </tr>
 	  </table>
- </form>
+	</form>
 </div>
-
+<!--
 <div id="dialog-form_2">
 <form>
 	
@@ -397,3 +399,5 @@ function event_reg(start, end)
 	
 </form>
 </div>
+모달팝업 뷰. 추후 구현 예정.
+-->

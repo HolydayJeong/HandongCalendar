@@ -1,6 +1,6 @@
 
 <br><br>
-<form action="./" method="post" >
+<form action="./" ruleset="eventRegRule" method="post" >
     <input type="hidden" name="document_srl"/>
    <input type="hidden" name="content"/>
    
@@ -19,44 +19,56 @@
       }
       
       (function($){
+	  $(document).ready(function(){
       $("#submit").click(function(){
 			if($('#eventname').val()==""){
 				alert("제목을 입력해 주세요.");
 				$('#eventname').focus();
 				return false;
 			}
-			if($('#groupname').val()==""){
+			else if($('#groupname').val()==""){
 				alert("주최를 입력해 주세요.");
 				$('#groupname').focus();
 				return false;
 			}
-			if($('#place').val()==""){
+			else if($('#place').val()==""){
 				alert("장소를 입력해 주세요.");
 				$('#place').focus();
 				return false;
 			}
-			if($('#fare').val()==""){
+			else if($('#fare').val()==""){
 				alert("가격을 입력해 주세요.");
 				$('#fare').focus();
 				return false;
 			}
-			if($('#phone').val()==""){
+			else if($('#phone').val()==""){
 				alert("연락처를 입력해 주세요.");
 				$('#phone').focus();
 				return false;
 			}
-			if($('#shour').val()==""){
+			else if($('#shour').val()==""){
 				alert("시간을 입력해 주세요.");
 				$('#shour').focus();
 				return false;
 			}
-			if($('#runtime').val()==""){
+			else if($('#runtime').val()==""){
 				alert("런타임을 입력해 주세요.");
+				$('#runtime').focus();
+				return false;
+			}
+			else if(isNaN($('#fare').val())){
+				alert("가격은 숫자로 입력해주세요");
+				$('#fare').focus();
+				return false;
+			}
+			else if(isNaN($('#runtime').val())){
+				alert("런타임은 숫자로 입력해주세요");
 				$('#runtime').focus();
 				return false;
 			}
 			$('#form').submit();
 		});
+	  });
       })(jQuery);
       
    </script>
@@ -75,26 +87,26 @@
      </tr>
       <tr>
        <th scope="row">제 목</th>
-             <td colspan='2'><input type="text" name="eventname" value="" size=120%/></td>
+             <td colspan='2'><input type="text" name="eventname" id="eventname" value="" size=120%/></td>
       </tr>
       <tr>
          <th scope="row">주 최</th>
-             <td colspan='2'><input type="text" name="groupname" value="" size=120%/></td>
+             <td colspan='2'><input type="text" name="groupname" id="groupname" value="" size=120%/></td>
       </tr>
       
       <tr>
       <th scope="row">장 소</th>
-         <td colspan='2'><input type="text" name="place" value="" size=50%/></td>
+         <td colspan='2'><input type="text" name="place" id="place" value="" size=50%/></td>
       </tr>
 
       <tr>
       <th scope="row">가 격</th>
-         <td colspan='2'><input type="text" name="fare" value="" size=30%/></td>
+         <td colspan='2'><input type="text" name="fare" id="fare" value="" size=30%/></td>
       </tr>
       
       <tr>
       <th scope="row">연락처</th>
-         <td colspan='2'><input type="text" name="phone" value="" size=50%/>'-'포함해서 입력하세요.</td>
+         <td colspan='2'><input type="text" name="phone" id="phone" value="" size=50%/>'-'포함해서 입력하세요.</td>
       </tr>
    
      <script>date++;
@@ -113,7 +125,7 @@
    
    <tr>
       <th scope="row">런타임</th>
-         <td colspan='2'><input type="text" name="runtime" value="" size=120%/></td>
+         <td colspan='2'><input type="text" name="runtime" id="runtime" value="" size=120%/></td>
       </tr>
       
      <div calss="editor">

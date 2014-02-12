@@ -2,7 +2,6 @@
 <table name="applicant">
 	 <column name="groupname" type="varchar" size="20" notnull="notnull"  primary_key="primary_key"/>
 	<column name="category" type="varchar" size="11" notnull="notnull"/> 
-    <column name="phone" type="number" size="11" />
-    <column name="id" type="varchar" size="40" notnull="notnull"/>
+    <column name="id" type="varchar" size="40" notnull="notnull" primary_key="primary_key"/>
     <column name="regdate" type="varchar" size="20" notnull="notnull" />
 </table>

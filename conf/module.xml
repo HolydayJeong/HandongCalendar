@@ -8,7 +8,7 @@
     </permissions>
     <actions>
 		<action name="dispHgucalendarShow" type="view" index="true" />
-		<action name="dispHgucalendarEventReg" type="view"/>
+		<action name="dispHgucalendarEventReg" ruleset="eventRegRule" type="view"/>
 		<action name="dispHgucalendarEventView" type="view"/>
 		<action name="dispHgucalendarUser" type="view"/>
 		<action name="dispHgucalendarContentRegist" type="view" />

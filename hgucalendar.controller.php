@@ -15,23 +15,27 @@
          * @brief BOOK 입력
          **/
         function procHgucalendarUserReg() {
- 
             // request 값을 모두 받음
             $obj = Context::getRequestVars();
  
+			$obj1 = Context::get('logged_info');
+
+			// 로그인한사람 아이디 가져오기
+			$obj->id = $obj1->user_id;
+
             // 단체명 확인
             $obj->module_srl = Context::get('groupname');
 			$obj->regdate = date("Y-m-d H:i:s");
 
 			 // module_srl이 있으면 update
-			$output = executeQuery("hgucalendar.regCheck", $obj);
-			if($output->data->groupname != null)
+			$output = executeQuery("hgucalendar.UserRegCheck", $obj);
+			if($output->data != null)
 			{
-				echo('<script>alert("이미 등록된 단체입니다");history.go(-1);</script>');
+				echo('<script>alert("이미 등록된 단체가 있습니다");location.href="./";</script>');
 			}
 			else{
 				executeQuery("hgucalendar.userReg", $obj);
-				echo('<script>alert("등록 되었습니다.");window.close();</script>');
+				echo('<script>alert("등록 되었습니다.");location.href="./";</script>');
 			$this->setMessage('success_updated');
 			} 
         }
@@ -62,11 +66,11 @@
 					}
 					else{
 						if($arr[$i][2]<10)
-								$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
+							$timesum = ($arr[$i][1]+12).":0".$arr[$i][2];
 						else
 							$timesum = $arr[$i][1].":".$arr[$i][2];
 					}
-				$obj->$arr[$i][3] = "'".$timesum."'";
+				$obj->$arr[$i][3] = $timesum;
 				}
 			}
 			
@@ -80,7 +84,10 @@
 
 			$oDocumentController = &getController('document');
 			$output = $oDocumentController->insertDocument($obj1);
-			$obj->document_srl = $document_srl;
+			$obj->document_srl = $document_srl; //문서 번호 Context등록
+
+			//작성 날짜 Context에 추가
+			$obj->regdate = date("Y-m-d H:i:s");
 
 			$output = executeQuery("hgucalendar.eventReg", $obj);
 			debugPrint($output);
@@ -88,6 +95,7 @@
 
 		}
 
+		/*
 		function procHgucalendarEventInfo() {
 			$myData->document_srl = Context::get('document_srl');
 			// 데이터를 처리합니다.
@@ -101,7 +109,10 @@
 			$output = $ohgucalendarModel->getHgucalendarEvent($obj);
 
 			$this->add('eventinfo', $output->data[0]);
-			$eventinfo = Context::get('eventinfo');
+			//$eventinfo = Context::get('eventinfo');
 		}
+		*/ // 모달팝업 뷰. 추후 구현 예정.
+
+		
 	}
 ?>

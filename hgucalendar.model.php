@@ -22,6 +22,19 @@ class hgucalendarModel extends hgucalendar {
 		$output = executeQueryArray('hgucalendar.getEvent', $args);
 		return $output;
 	}
-
+	
+	function UserRegCheck() {
+		$obj = Context::get('logged_info');
+		$obj->id = $obj->user_id;
+		$output = executeQuery('hgucalendar.UserRegCheck', $obj);
+		return $output;
+	}
+	
+	function getUserGroup($arg) {
+		$obj = $arg;
+		
+		$output = executeQuery('hgucalendar.getUserGroup', $obj);
+		return $output;
+	}
 }
 ?>

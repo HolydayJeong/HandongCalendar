@@ -23,5 +23,6 @@
 		<column name="stime4_2" var="stime4_2"/>
 		<column name="stime5_1" var="stime5_1"/>
 		<column name="stime5_2" var="stime5_2"/>
+		<column name="regdate" var="regdate"/>
     </columns>
 </query>
