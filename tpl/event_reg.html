@@ -22,7 +22,12 @@
 	  $(document).ready(function(obj){
 
       $("#submit").click(function(){
-			if($('#eventname').val()==""){
+    	  if($('#perform').val()==""){
+				alert("공연인지 비공연인지 선택해 주세요.");
+				$('#perform').focus();
+				return false;
+			}
+    	  else if($('#eventname').val()==""){
 				alert("제목을 입력해 주세요.");
 				$('#eventname').focus();
 				return false;
@@ -64,45 +69,42 @@
 			}
 			$('#form').submit();
 		});
-	  });
+      
+        });
       })(jQuery);
       
    </script>
-   <table width=80% border="1" align="center" cellpadding="5" cellspacing="0" summary="">
+   <table width=80% border="0" align="center" cellpadding="5" cellspacing="0" summary="">
+
 
      <tr>
-      <td align="center">시작일자</td>
-      <td colspan='2'>{$startY}-{$startM}-{$startD}</td>
+      <td colspan="3" align="center" style="font-family:맑은 고딕;font-size:30px;">일정 등록</td>
      </tr>
      <tr>
-      <td align="center">마감일자</td>
-      <td colspan='2'>{$endY}-{$endM}-{$endD}</td>
+      <td colspan="3" style="font-family:맑은 고딕;font-size:12px;">{$startY}-{$startM}-{$startD} ~ {$endY}-{$endM}-{$endD}</td>
      </tr>
-     <tr>
-      <td colspan="3" align="center"><b>일정 등록<b></td>
-     </tr>
-      <tr>
-       <th scope="row">제 목</th>
-             <td colspan='2'><input type="text" name="eventname" id="eventname" value="" size=120%/></td>
-      </tr>
-      <tr>
-      	<td>
-      		<input type="radio" name="perform" id="perform" value=""/>공연
-      		<input type="radio" name="not_perform" id="not_perform" value=""/>비공연
+       <tr>
+      	<td colspan="3" style="font-size:12px;">
+      		<input type="radio" name="perform" id="perform" value="" onClick="reserve(perform)"/>공연
+      		<input type="radio" name="perform" id="not_perform" value=""/>비공연
       	</td>
       </tr>
       <tr>
-      <th scope="row">장 소</th>
+       <th align="center" width="20%" style="font-family:맑은 고딕;font-size:15px;">제 목</th>
+             <td colspan='2'><input type="text" name="eventname" id="eventname" value="" size=100%/></td>
+      </tr>
+      <tr>
+      <th align="center" width="20%" style="font-family:맑은 고딕;font-size:15px;">장 소</th>
          <td colspan='2'><input type="text" name="place" id="place" value="" size=50%/></td>
       </tr>
 
       <tr>
-      <th scope="row">가 격</th>
+      <th align="center" width="20%" style="font-family:맑은 고딕;font-size:15px;">가 격</th>
          <td colspan='2'><input type="text" name="fare" id="fare" value="" size=30%/></td>
       </tr>
       
       <tr>
-      <th scope="row">연락처</th>
+      <th align="center" width="20%" style="font-family:맑은 고딕;font-size:15px;">연락처</th>
          <td colspan='2'><input type="text" name="phone" id="phone" value="" size=50%/>'-'포함해서 입력하세요.</td>
       </tr>
    
@@ -121,8 +123,8 @@
    </script>
    
    <tr>
-      <th scope="row">런타임</th>
-         <td colspan='2'><input type="text" name="runtime" id="runtime" value="" size=120%/>분으로 기입해주세요.(ex. 120분)</td>
+      <th align="center" width="20%" style="font-family:맑은 고딕;font-size:15px;">런타임</th>
+         <td colspan='2'><input type="text" name="runtime" id="runtime" value="" size=80%/>분 (ex. 120분)</td>
       </tr>
       
      <div calss="editor">
