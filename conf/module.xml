@@ -9,9 +9,11 @@
     <actions>
 		<action name="dispHgucalendarShow" type="view" index="true" />
 		<action name="dispHgucalendarEventReg" ruleset="eventRegRule" type="view"/>
-		<action name="dispHgucalendarEventView" type="view"/>
-		<action name="dispHgucalendarUser" type="view"/>
 		<action name="dispHgucalendarContentRegist" type="view" />
+		<action name="dispHgucalendarEventView" type="view"/>
+		<action name="dispHgucalendarGroupManager" type="view" />
+		<action name="dispHgucalendarUser" type="view"/>
+
 
 		<action name="dispHgucalendarAdminShow" type="view" admin_index="true" />
 		<action name="dispHgucalendarAdminInsertHgucalendar" type="view" standalone="true" />
@@ -21,6 +23,7 @@
 		<action name="procHgucalendarUserReg" type="controller" standalone="true" />
 		<action name="procHgucalendarEventReg" type="controller" standalone="true" />
 		<action name="procHgucalendarEventInfo" type="controller" standalone="true" />
+		<action name="procHgucalendarGoupPermit" type="controller" standalone="true" />
 		
 	</actions>
 	<menus>

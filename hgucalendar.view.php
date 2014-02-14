@@ -41,10 +41,13 @@ class hgucalendarView extends hgucalendar {
 		// 달력 목록 가져오는 모델 생성
 		$ohgucalendarModel = &getModel('hgucalendar');
 		$output = $ohgucalendarModel->getHgucalendarEventList($obj);
-		
+
 		// Context에 세팅하기
 		Context::set('eventinfo', $output->data);
-		//$eventinfo = Context::get('eventinfo');
+
+		$output = $ohgucalendarModel->isManager();
+		Context::set('manager', $output->data);
+		//$eventinfo = Context::get('manager');
 		//debugPrint($eventinfo);
 
 		// 정보를 보내기
@@ -76,49 +79,6 @@ class hgucalendarView extends hgucalendar {
 		}
 	}
 
-	function dispHgucalendarEventView() { //이벤트 세부내용 보여주기
-		//Document모델 가져오기
-		$oDocumentModel = &getModel('document');
-		$oDocument = $oDocumentModel->getDocument();
-
-		//document_srl 받아오기
-		$obj = Context::getRequestVars();
-		$document_srl = $obj->document_srl;
-		$oDocument->document_srl = $document_srl;
-
-		$oDocument->setDocument($document_srl);
-		$oDocument->add('module_srl', $this->module_srl);
-
-		Context::set('document_title', $oDocument->variables[title]);
-		Context::set('document_srl', $document_srl);
-		Context::set('oDocument',$oDocument);
-
-		$ohgucalendarModel = &getModel('hgucalendar');
-		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
-
-		debugPrint($output);
-		// 유저의 GroupName 가져오기
-		$output1 = $ohgucalendarModel->getUserGroup($output->data[0]);
-		debugPrint($output1);
-
-		$output->data[0]->groupname = $output1->data->groupname;
-		// Context에 세팅하기
-		Context::set('eventinfo', $output->data[0]);
-		
-		$test = Context::get('eventinfo');
-		
-		// 정보를 보내기
-		$this->setTemplateFile('event');
-	}
-
-	function dispHgucalendarUser(){
-		// 내용 작성시 검증을 위해 사용되는 XmlJSFilter 
-		Context::addJsFilter($this->module_path.'tpl/filter', 'user_insert.xml');
-
-	    // 내용 작성화면 템플릿 파일 지정 register.html
-		$this->setTemplateFile('register');
-	}
-	
 	function dispHgucalendarContentRegist() {
 		$ohgucalendarModel = &getModel('hgucalendar');
 		$output = $ohgucalendarModel->UserRegCheck();
@@ -170,9 +130,59 @@ class hgucalendarView extends hgucalendar {
 			
 		$this->setTemplateFile('event_reg');
 		}
-		else
-			echo('<script>alert("단체등록을 해주세요");location.href="./";</script>');
+		else{
+			echo('<script>alert("단체등록을 해주세요");location.href="./'.$this->mid.'";</script>');
+		}
 	}
+
+	function dispHgucalendarEventView() { //이벤트 세부내용 보여주기
+		//Document모델 가져오기
+		$oDocumentModel = &getModel('document');
+		$oDocument = $oDocumentModel->getDocument();
+
+		//document_srl 받아오기
+		$obj = Context::getRequestVars();
+		$document_srl = $obj->document_srl;
+		$oDocument->document_srl = $document_srl;
+
+		$oDocument->setDocument($document_srl);
+		$oDocument->add('module_srl', $this->module_srl);
+
+		Context::set('document_title', $oDocument->variables[title]);
+		Context::set('document_srl', $document_srl);
+		Context::set('oDocument',$oDocument);
+
+		$ohgucalendarModel = &getModel('hgucalendar');
+		$output = $ohgucalendarModel->getHgucalendarEvent($obj);
+
+		// 유저의 GroupName 가져오기
+		$output1 = $ohgucalendarModel->getUserGroup($output->data[0]);
+
+		$output->data[0]->groupname = $output1->data->groupname;
+		// Context에 세팅하기
+		Context::set('eventinfo', $output->data[0]);
+				
+		// 정보를 보내기
+		$this->setTemplateFile('event');
+	}
+
+	function dispHgucalendarGroupManager() {
+		// 모델 생성
+		$ohgucalendarModel = &getModel('hgucalendar');
+		$output = $ohgucalendarModel->groupapply();
+
+		Context::set('member', $output->data);
+		
+		$this->setTemplateFile('groupManage');
+
+	}
+	function dispHgucalendarUser(){
+		// 내용 작성시 검증을 위해 사용되는 XmlJSFilter 
+		Context::addJsFilter($this->module_path.'tpl/filter', 'user_insert.xml');
+
+	    // 내용 작성화면 템플릿 파일 지정 register.html
+		$this->setTemplateFile('register');
+	}	
 
 	function dispHgucalendarEventReg(){
 		$this->setTemplateFile('event_reg');

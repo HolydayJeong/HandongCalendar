@@ -30,10 +30,21 @@ class hgucalendarModel extends hgucalendar {
 		return $output;
 	}
 	
-	function getUserGroup($arg) {
+	function getUserGroup($arg){
 		$obj = $arg;
 		
 		$output = executeQuery('hgucalendar.getUserGroup', $obj);
+		return $output;
+	}
+
+	function isManager() {
+		$output = executeQuery('hgucalendar.isManager', $obj);
+		return $output;
+	}
+
+	function groupapply(){
+		$obj->number = 1;
+		$output = executeQuery('hgucalendar.groupApply', $obj);
 		return $output;
 	}
 }

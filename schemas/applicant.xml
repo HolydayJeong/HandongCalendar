@@ -4,4 +4,6 @@
 	<column name="category" type="varchar" size="11" notnull="notnull"/> 
     <column name="id" type="varchar" size="40" notnull="notnull" primary_key="primary_key"/>
     <column name="regdate" type="varchar" size="20" notnull="notnull" />
+	<column name="groupPermited" type="number" size="1" default="0" />
+	<column name="isManager" type="number" size="1" default="0" />
 </table>

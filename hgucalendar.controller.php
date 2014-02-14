@@ -35,7 +35,7 @@
 			}
 			else{
 				executeQuery("hgucalendar.userReg", $obj);
-				echo('<script>alert("등록 되었습니다.");location.href="./";</script>');
+				echo('<script>alert("등록 되었습니다.");location.href="./'.$this->mid.'";</script>');
 			$this->setMessage('success_updated');
 			} 
         }
@@ -90,9 +90,15 @@
 			$obj->regdate = date("Y-m-d H:i:s");
 
 			$output = executeQuery("hgucalendar.eventReg", $obj);
-			debugPrint($output);
-			echo('<script>alert("등록되었습니다.");location.href="./";</script>');
 
+			echo('<script>alert("등록되었습니다.");location.href="./'.$this->mid.'";</script>');
+
+		}
+		
+		function procHgucalendarGoupPermit() {
+			$obj = Context::getRequestVars();
+			debugPrint('good');
+			debugPrint($obj);
 		}
 
 		/*
