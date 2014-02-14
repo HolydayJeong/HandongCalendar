@@ -40,10 +40,11 @@
 		<tr align="center">
 				<td colspan='4' style="font-family:맑은 고딕;color:black;font-size:20px;">{$oDocument->getContent()}</td>
 		</tr>
-
-		<tr>
-         <td align="center"><input style="font-family:맑은 고딕;font-size:15px;" type="button" id="reserve" value="예약"/></td>
-         </tr>
+		<script>
+		if({$eventinfo->perform} == 1){
+			document.write('<tr><td align="center"><input style="font-family:맑은 고딕;font-size:15px;" type="button" id="reserve" value="예약"/></td></tr>');
+		}
+		</script>
 
 
 

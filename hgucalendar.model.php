@@ -38,6 +38,7 @@ class hgucalendarModel extends hgucalendar {
 	}
 
 	function isManager() {
+		$obj->number = 1;
 		$output = executeQuery('hgucalendar.isManager', $obj);
 		return $output;
 	}

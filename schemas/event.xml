@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table name = "event">
 	<column name="event_srl" type="number" size="20" notnull="notnull" auto_increment="auto_increment"  primary_key="primary_key"/>
-	<column name="category" type="varchar" size="10" notnull="notnull"/>
+	<column name="perform" type="number" size="1" notnull="notnull"/>
     <column name="eventname" type="varchar" size="30" notnull="notnull"/>
 	<column name="place" type="varchar" size="20" notnull="notnull"/>
     <column name="id" type="varchar" size="40" notnull="notnull"/>

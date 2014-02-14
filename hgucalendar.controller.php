@@ -97,8 +97,21 @@
 		
 		function procHgucalendarGoupPermit() {
 			$obj = Context::getRequestVars();
-			debugPrint('good');
-			debugPrint($obj);
+			
+			if($obj->command == 1){
+				$output = executeQuery("hgucalendar.groupPermit", $obj);
+			}
+			else if($obj->command == 2){
+				$output = executeQuery("hgucalendar.groupCancel", $obj);
+			}
+			else
+				echo('<script>alert("치명적 오류")</script>');
+
+			if($output->message == 'success'){
+				echo('<script>alert("성공하였습니다.");history.go(-1);</script>');
+			}
+			else
+				echo('<script>alert("치명적 오류가 발생했습니다.")</script>');
 		}
 
 		/*

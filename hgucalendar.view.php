@@ -158,6 +158,7 @@ class hgucalendarView extends hgucalendar {
 		// 유저의 GroupName 가져오기
 		$output1 = $ohgucalendarModel->getUserGroup($output->data[0]);
 
+		// Groupname 할당
 		$output->data[0]->groupname = $output1->data->groupname;
 		// Context에 세팅하기
 		Context::set('eventinfo', $output->data[0]);

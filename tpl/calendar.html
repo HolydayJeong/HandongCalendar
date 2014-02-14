@@ -212,6 +212,12 @@ function event_reg(start, end)
 		<!--@end-->
 
 		<!--@end-->
+		
+		<!--@foreach($manager as $no)-->
+		if('{$no->id}' == '{$logged_info->user_id}'){
+		$('.fc-header-right').append('<span class="fc-button  fc-state-default fc-corner-left fc-corner-right" id="groupmanager">단체관리</span>');
+		}
+		<!--@end-->
 
 		$('.fc-header-right').append('<span class="fc-button  fc-state-default fc-corner-left fc-corner-right" id="groupreg">단체등록</span>');
 
@@ -219,7 +225,11 @@ function event_reg(start, end)
 			 $( "#dialog-form" ).dialog( "open" );
 		});
 		
+		$('#groupmanager').button().click(function(){
+			 location.href="./index.php?mid={$module_info->mid}&act=dispHgucalendarGroupManager";
+		});
 		
+
 		$( "#dialog-form" ).dialog({
 		      autoOpen: false,
 		      height: 270,

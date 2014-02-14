@@ -4,7 +4,7 @@
     </tables>
     <columns>
 		<column name="eventname" var="eventname" notnull="notnull"/>
-		<column name="category" var="category" notnull="notnull" default="동아리"/>
+		<column name="perform" var="perform" notnull="notnull" />
 		<column name="place" var="place" notnull="notnull"/>
 		<column name="id" var="id" notnull="notnull" default="jsi"/>
 		<column name="phone" var="phone"/>
